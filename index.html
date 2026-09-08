@@ -3,15 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SIX33 FUEL SYSTEMS — Coming Soon · Built To Seek First</title>
-<meta name="description" content="SIX33 Fuel Systems — coming soon. Four premium fuel systems engineered to spread the gospel and impact culture. Kickstarter launching soon. Join the waitlist. A movement by Seek First World — Matthew 6:33." />
-<meta property="og:title" content="SIX33 FUEL SYSTEMS — Coming Soon · Built To Seek First" />
-<meta property="og:description" content="A movement to spread the gospel and impact culture through clean fuel for people on mission. Kickstarter launching soon — join the waitlist." />
-<meta property="og:image" content="/six33-lineup.png" />
-<meta property="og:type" content="website" />
+<title>SIX33 Fuel Systems — Coming Soon · Built To Seek First</title>
+<meta name="description" content="SIX33 Fuel Systems — coming soon. Four premium powdered fuel systems engineered to spread the gospel and impact culture. Kickstarter launching soon — join the waitlist. A movement by Seek First World. Matthew 6:33." />
+<link rel="canonical" href="https://www.six33fuel.com/" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="author" content="SIX33 Fuel Systems — Seek First World" />
 <meta name="theme-color" content="#050505" />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/favicon.png" />
+
+<meta property="og:site_name" content="SIX33 Fuel Systems" />
+<meta property="og:title" content="SIX33 Fuel Systems — Coming Soon · Built To Seek First" />
+<meta property="og:description" content="A movement to spread the gospel and impact culture through clean fuel for people on mission. Kickstarter launching soon — join the waitlist." />
+<meta property="og:image" content="https://www.six33fuel.com/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The SIX33 Fuel Systems lineup — Ignite, Flow, Recover and Rest stick packs." />
+<meta property="og:url" content="https://www.six33fuel.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_CA" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SIX33 Fuel Systems — Coming Soon · Built To Seek First" />
+<meta name="twitter:description" content="Four premium fuel systems built to spread the gospel and impact culture. Kickstarter launching soon — join the waitlist." />
+<meta name="twitter:image" content="https://www.six33fuel.com/og.jpg" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -42,6 +60,7 @@
   ::selection { background:var(--ignite); color:#000; }
   a { color:inherit; text-decoration:none; }
   img { max-width:100%; display:block; }
+  picture { display:contents; }
   button { font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
   body::after {
     content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
@@ -85,7 +104,7 @@
   .hero-tag { display:inline-flex; align-items:center; gap:10px; font-family:var(--mono); font-size:0.66rem; letter-spacing:0.26em; color:var(--text-dim); text-transform:uppercase; border:1px solid var(--line); border-radius:100px; padding:8px 16px; margin-bottom:30px; background:rgba(255,255,255,0.02); opacity:0; transform:translateY(20px); animation:rise 0.9s var(--ease) 0.1s forwards; }
   .hero-tag .dot { width:6px; height:6px; border-radius:50%; background:var(--ignite); box-shadow:0 0 10px var(--ignite); animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .hero h1 { font-family:var(--display); font-weight:700; font-size:clamp(3.1rem,8.6vw,7.8rem); line-height:0.92; letter-spacing:-0.01em; text-transform:uppercase; margin-bottom:8px; }
+  .hero h1 { font-family:var(--display); font-weight:700; font-size:clamp(2.9rem,7.2vw,6.8rem); line-height:0.94; letter-spacing:-0.01em; text-transform:uppercase; margin-bottom:8px; }
   .hero h1 .line { display:block; overflow:hidden; }
   .hero h1 .line span { display:block; opacity:0; transform:translateY(110%); animation:rise 1s var(--ease) forwards; }
   .hero h1 .line:nth-child(1) span { animation-delay:0.2s; }
@@ -109,6 +128,13 @@
   .hero-stat .lbl { font-family:var(--mono); font-size:0.58rem; letter-spacing:0.2em; color:var(--text-faint); text-transform:uppercase; margin-top:6px; }
   .hero-packet { position:absolute; right:5%; top:50%; transform:translateY(-50%); width:230px; z-index:2; animation:float 6s ease-in-out infinite; filter:drop-shadow(0 30px 60px rgba(0,0,0,0.7)); }
   @keyframes float { 0%,100%{transform:translateY(-50%) rotate(-5deg);} 50%{transform:translateY(calc(-50% - 24px)) rotate(-3deg);} }
+
+  /* Reserve the packet's lane so the hero headline never collides with it */
+  @media (min-width:1025px) {
+    .hero h1, .hero-sub, .hero-verse { max-width:min(100%, 62ch); }
+    .hero .wrap { padding-right:300px; }
+    .hero-stats { max-width:none; }
+  }
 
   /* PACKET */
   .packet { position:relative; border-radius:6px; background:linear-gradient(160deg,#1f1f26,#060607 58%,#15151a); border:1px solid rgba(255,255,255,0.08); overflow:hidden; padding:30px 18px 20px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.07),0 20px 40px rgba(0,0,0,0.5); aspect-ratio:5/13; display:flex; flex-direction:column; align-items:center; }
@@ -305,6 +331,7 @@
   .footer-col a:hover { color:var(--ignite); }
   .footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding-top:32px; }
   .footer-bottom p { font-family:var(--mono); font-size:0.62rem; color:var(--text-faint); letter-spacing:0.08em; }
+  /* Retained for when the SIX33 social accounts go live */
   .footer-social { display:flex; gap:12px; }
   .footer-social a { width:36px; height:36px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all 0.35s var(--ease); }
   .footer-social a:hover { border-color:var(--ignite); background:var(--ignite); }
@@ -312,15 +339,17 @@
   .footer-social svg { width:15px; height:15px; color:var(--text-dim); }
 
   /* COMING SOON BANNER */
-  .cs-banner { position:fixed; top:0; left:0; right:0; z-index:1100; display:flex; align-items:center; justify-content:center; gap:18px; padding:9px 24px; background:linear-gradient(90deg,#0a0a0c,#1a0e07,#0a0a0c); border-bottom:1px solid rgba(255,94,31,0.35); font-family:var(--mono); font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--text-dim); }
+  .cs-banner { position:fixed; top:0; left:0; right:0; z-index:1100; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; row-gap:4px; gap:18px; padding:9px 24px; text-align:center; background:linear-gradient(90deg,#0a0a0c,#1a0e07,#0a0a0c); border-bottom:1px solid rgba(255,94,31,0.35); font-family:var(--mono); font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--text-dim); }
   .cs-banner b { color:var(--ignite); letter-spacing:0.26em; }
-  .cs-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--ignite); box-shadow:0 0 10px var(--ignite); animation:pulse 2s infinite; }
+  .cs-banner .dot { flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:var(--ignite); box-shadow:0 0 10px var(--ignite); animation:pulse 2s infinite; }
   .cs-banner a { color:var(--gold); border-bottom:1px solid var(--gold); padding-bottom:1px; transition:opacity 0.3s; }
   .cs-banner a:hover { opacity:0.75; }
-  body.has-banner nav { top:32px; }
+  body.has-banner nav { top:var(--banner-h, 32px); }
   @media (max-width:680px) {
-    .cs-banner { font-size:0.54rem; letter-spacing:0.18em; gap:10px; padding:7px 12px; }
+    .cs-banner { font-size:0.54rem; letter-spacing:0.14em; gap:8px; padding:7px 10px; }
     .cs-banner .cs-extra { display:none; }
+    /* Banner runs to two lines here; --banner-h keeps the nav clear of it */
+    body.has-banner nav { top:var(--banner-h, 46px); }
   }
 
   /* COMING SOON BADGE (reusable inline) */
@@ -332,7 +361,7 @@
   .waitlist { position:relative; padding:120px 0 130px; background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(255,94,31,0.08),transparent 70%),var(--black); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
   .waitlist::before { content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 75%); opacity:0.5; }
   .waitlist .wrap { text-align:center; max-width:760px; }
-  .waitlist .crown-mark { width:120px; height:140px; margin:0 auto 28px; opacity:0.95; filter:drop-shadow(0 8px 40px rgba(255,94,31,0.35)); }
+  .waitlist .crown-mark { width:120px; height:140px; object-fit:contain; margin:0 auto 28px; opacity:0.95; filter:drop-shadow(0 8px 40px rgba(255,94,31,0.35)); }
   .waitlist h2 { font-family:var(--display); font-weight:700; font-size:clamp(2.2rem,5.5vw,4rem); line-height:0.98; text-transform:uppercase; letter-spacing:-0.005em; margin:18px 0 22px; }
   .waitlist h2 .grad { background:linear-gradient(100deg,var(--ignite),var(--gold-soft) 70%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
   .waitlist .w-lead { color:var(--text-dim); font-size:1.04rem; max-width:560px; margin:0 auto 36px; }
@@ -348,6 +377,38 @@
   .w-meta .x { width:1px; height:10px; background:var(--line-2); }
   .w-success { display:none; padding:24px; border:1px solid var(--recover); background:rgba(79,209,60,0.06); border-radius:4px; color:var(--recover); font-family:var(--mono); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; max-width:520px; margin:0 auto; }
   .w-success.show { display:block; animation:rise 0.6s var(--ease); }
+
+  /* Accessibility helper */
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  /* Honeypot — off-screen, never shown, never announced */
+  .w-trap { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+  /* Form error + submit states */
+  .w-error { display:none; max-width:520px; margin:14px auto 0; padding:12px 16px; border:1px solid var(--ignite); background:rgba(255,94,31,0.07); border-radius:3px; color:var(--ignite); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; }
+  .w-error.show { display:block; }
+  .w-form input[aria-invalid="true"] { border-color:var(--ignite); background:rgba(255,94,31,0.06); }
+  .w-form button { position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px; }
+  .w-form button[disabled] { opacity:0.6; cursor:not-allowed; transform:none; box-shadow:none; }
+  .wb-spin { display:none; width:14px; height:14px; border:2px solid rgba(0,0,0,0.25); border-top-color:#000; border-radius:50%; animation:wbspin 0.7s linear infinite; }
+  .w-form button.loading .wb-spin { display:block; }
+  @keyframes wbspin { to { transform:rotate(360deg); } }
+  .w-form input:focus-visible, .w-form button:focus-visible, a:focus-visible, button:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+
+  /* Respect reduced-motion: keep the page legible, drop the cinematics */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    *, *::before, *::after {
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+    .reveal { opacity:1 !important; transform:none !important; }
+    .hero-tag, .hero-sub, .hero-verse, .hero-actions, .hero-stats { opacity:1 !important; transform:none !important; }
+    .hero h1 .line span { opacity:1 !important; transform:none !important; }
+    .orb, .hero-scan, .hero-packet { animation:none !important; }
+    .cursor-blob { display:none !important; }
+  }
 
   /* CART (legacy — unused but kept for safety) */
   .cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:2000; opacity:0; pointer-events:none; transition:opacity 0.4s var(--ease); backdrop-filter:blur(4px); }
@@ -470,8 +531,33 @@
   @media (max-width:640px) {
     .wrap { padding:0 18px; }
     nav { padding:13px 18px; }
-    .nav-links { display:none; }
     .burger { display:flex; }
+    .nav-cta { padding:9px 14px; font-size:0.7rem; }
+
+    /* Mobile menu becomes a full-width drop panel under the bar */
+    .nav-links {
+      position:fixed; top:0; left:0; right:0;
+      flex-direction:column; align-items:stretch; gap:0;
+      padding:74px 18px 20px;
+      background:rgba(5,5,5,0.97);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--line);
+      transform:translateY(-101%);
+      transition:transform 0.42s var(--ease);
+      z-index:-1;
+    }
+    nav.menu-open .nav-links { transform:translateY(0); }
+    .nav-links a {
+      padding:16px 4px; font-size:1rem; color:var(--text);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-links a:last-child { border-bottom:none; }
+    .nav-links a::after { display:none; }
+    nav.menu-open { background:rgba(5,5,5,0.97); backdrop-filter:blur(20px); }
+    nav.menu-open .burger span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    nav.menu-open .burger span:nth-child(2) { opacity:0; }
+    nav.menu-open .burger span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    body.menu-locked { overflow:hidden; }
     section { padding:80px 0; }
     .product-grid { grid-template-columns:1fr; }
     .timeline { grid-template-columns:repeat(2,1fr); }
@@ -484,8 +570,102 @@
     .pc-packet { width:70px; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.six33fuel.com/#organization",
+      "name": "SIX33 Fuel Systems",
+      "url": "https://www.six33fuel.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.six33fuel.com/favicon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://www.six33fuel.com/og.jpg",
+      "slogan": "Fuel Your Purpose. Live On Mission.",
+      "description": "Premium powdered fuel systems built to spread the gospel and impact culture. A movement by Seek First World.",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Seek First World",
+        "url": "https://www.seekfirst.world"
+      },
+      "founder": { "@id": "https://www.six33fuel.com/#founder" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.six33fuel.com/#founder",
+      "name": "Daniel Ziedins",
+      "url": "https://danielziedins.com",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://www.six33fuel.com/#organization" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.six33fuel.com/#website",
+      "url": "https://www.six33fuel.com/",
+      "name": "SIX33 Fuel Systems",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://www.six33fuel.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.six33fuel.com/#webpage",
+      "url": "https://www.six33fuel.com/",
+      "name": "SIX33 Fuel Systems — Coming Soon · Built To Seek First",
+      "isPartOf": { "@id": "https://www.six33fuel.com/#website" },
+      "about": { "@id": "https://www.six33fuel.com/#organization" },
+      "primaryImageOfPage": "https://www.six33fuel.com/og.jpg"
+    },
+    {
+      "@type": "ProductGroup",
+      "@id": "https://www.six33fuel.com/#lineup",
+      "name": "SIX33 Fuel Systems Lineup",
+      "description": "Four powdered fuel systems: Ignite for energy and focus, Flow for deep work, Recover for electrolytes and recovery, and Rest for sleep and nervous-system support.",
+      "brand": { "@id": "https://www.six33fuel.com/#organization" },
+      "image": "https://www.six33fuel.com/og.jpg",
+      "hasVariant": [
+        { "@type": "Product", "name": "SIX33 Ignite", "description": "Energy + focus. Romans 12:11.", "brand": { "@id": "https://www.six33fuel.com/#organization" } },
+        { "@type": "Product", "name": "SIX33 Flow", "description": "Productivity + deep work. Colossians 3:23.", "brand": { "@id": "https://www.six33fuel.com/#organization" } },
+        { "@type": "Product", "name": "SIX33 Recover", "description": "Recovery + electrolytes. Psalm 23:3.", "brand": { "@id": "https://www.six33fuel.com/#organization" } },
+        { "@type": "Product", "name": "SIX33 Rest", "description": "Sleep + nervous system. Psalm 4:8.", "brand": { "@id": "https://www.six33fuel.com/#organization" } }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.six33fuel.com/#faq",
+      "isPartOf": { "@id": "https://www.six33fuel.com/#webpage" },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When does SIX33 Fuel Systems launch?",
+          "acceptedAnswer": { "@type": "Answer", "text": "SIX33 Fuel Systems launches on Kickstarter. Join the waitlist to be notified the moment the campaign goes live and to lock in founding-backer pricing." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the four SIX33 fuel systems?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ignite for energy and focus, Flow for productivity and deep work, Recover for recovery and electrolytes, and Rest for sleep and nervous-system support. Each system carries its own scripture." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does joining the waitlist get me?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Waitlist members get first access to the Kickstarter campaign, founding-backer tier pricing, and first-run product. No spam — only the launch and the mission." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is behind SIX33 Fuel Systems?",
+          "acceptedAnswer": { "@type": "Answer", "text": "SIX33 Fuel Systems is founded by Daniel Ziedins and is a movement by Seek First World, built on Matthew 6:33 — seek first the Kingdom of God." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
-<body>
+<body class="has-banner">
 
 <div class="ambient">
   <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
@@ -513,15 +693,15 @@
     <span class="brand-shield"><svg><use href="#shield"/></svg></span>
     <span><div class="brand-text chrome-text">SIX33</div><div class="brand-sub">Fuel Systems</div></span>
   </a>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="#mission">The Mission</a>
     <a href="#showcase">The Lineup</a>
     <a href="#products">Systems</a>
     <a href="#founder">The Founder</a>
     <a href="#kickstarter">Kickstarter</a>
   </div>
-  <button class="nav-cta magnetic" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
-  <button class="burger" onclick="document.querySelector('.nav-links').style.display = getComputedStyle(document.querySelector('.nav-links')).display==='flex'?'none':'flex'">
+  <button class="nav-cta magnetic" data-waitlist>Join Waitlist</button>
+  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -539,7 +719,7 @@
     <p class="hero-sub">SIX33 is a movement to put the gospel back into everyday performance &mdash; four premium powdered fuel systems engineered for the disciplined, the driven, and the called. Every packet is a stand for Christ in business, sports, work, and family.</p>
     <div class="hero-verse">&mdash;&mdash; <span>Built To Seek First.</span> Matthew 6:33</div>
     <div class="hero-actions">
-      <button class="btn-primary magnetic" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join The Waitlist</button>
+      <button class="btn-primary magnetic" data-waitlist>Join The Waitlist</button>
       <a href="#kickstarter" class="btn-ghost magnetic">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
         Kickstarter Coming Soon
@@ -589,7 +769,10 @@
     </div>
     <div class="showcase-frame reveal d1" style="position:relative;">
       <div class="cs-corner"><span class="cs-pill"><span class="dot"></span> Coming Soon</span></div>
-      <img src="six33-lineup.png" alt="SIX33 Fuel Systems lineup — Ignite, Flow, Recover, Rest stick packs with the Seek First World box set" loading="lazy" />
+      <picture>
+        <source srcset="six33-lineup.webp" type="image/webp" />
+        <img src="six33-lineup.jpg" width="1536" height="1024" alt="SIX33 Fuel Systems lineup — Ignite, Flow, Recover, Rest stick packs with the Seek First World box set" loading="lazy" decoding="async" />
+      </picture>
     </div>
     <div class="showcase-cap reveal d2">Ignite &bull; Flow &bull; Recover &bull; Rest &nbsp;&mdash;&nbsp; Built To Seek First</div>
   </div>
@@ -606,7 +789,7 @@
     </div>
     <div class="product-grid">
 
-      <div class="product-card reveal" style="--cardglow:var(--ignite-glow);--cardline:var(--ignite);--cardcolor:var(--ignite);" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card reveal" role="button" tabindex="0" aria-label="Join the waitlist for this system" style="--cardglow:var(--ignite-glow);--cardline:var(--ignite);--cardcolor:var(--ignite);" data-waitlist>
         <div class="pc-top"><span class="pc-system">Energy System</span><span class="pc-num">01 / 04</span></div>
         <div class="pc-layout">
           <div class="pc-packet"><div class="packet" style="padding:18px 8px 12px;">
@@ -626,7 +809,7 @@
         <div class="pc-foot"><div class="pc-price"><span class="cs-pill"><span class="dot"></span> Coming Soon</span></div><span class="pc-add">Notify Me +</span></div>
       </div>
 
-      <div class="product-card reveal d1" style="--cardglow:var(--flow-glow);--cardline:var(--flow);--cardcolor:var(--flow);" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card reveal d1" role="button" tabindex="0" aria-label="Join the waitlist for this system" style="--cardglow:var(--flow-glow);--cardline:var(--flow);--cardcolor:var(--flow);" data-waitlist>
         <div class="pc-top"><span class="pc-system">Focus System</span><span class="pc-num">02 / 04</span></div>
         <div class="pc-layout">
           <div class="pc-packet"><div class="packet" style="padding:18px 8px 12px;">
@@ -646,7 +829,7 @@
         <div class="pc-foot"><div class="pc-price"><span class="cs-pill"><span class="dot"></span> Coming Soon</span></div><span class="pc-add">Notify Me +</span></div>
       </div>
 
-      <div class="product-card reveal d2" style="--cardglow:var(--recover-glow);--cardline:var(--recover);--cardcolor:var(--recover);" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card reveal d2" role="button" tabindex="0" aria-label="Join the waitlist for this system" style="--cardglow:var(--recover-glow);--cardline:var(--recover);--cardcolor:var(--recover);" data-waitlist>
         <div class="pc-top"><span class="pc-system">Recovery System</span><span class="pc-num">03 / 04</span></div>
         <div class="pc-layout">
           <div class="pc-packet"><div class="packet" style="padding:18px 8px 12px;">
@@ -666,7 +849,7 @@
         <div class="pc-foot"><div class="pc-price"><span class="cs-pill"><span class="dot"></span> Coming Soon</span></div><span class="pc-add">Notify Me +</span></div>
       </div>
 
-      <div class="product-card reveal" style="--cardglow:var(--rest-glow);--cardline:var(--rest);--cardcolor:var(--rest);" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card reveal" role="button" tabindex="0" aria-label="Join the waitlist for this system" style="--cardglow:var(--rest-glow);--cardline:var(--rest);--cardcolor:var(--rest);" data-waitlist>
         <div class="pc-top"><span class="pc-system">Rest System</span><span class="pc-num">04 / 04</span></div>
         <div class="pc-layout">
           <div class="pc-packet"><div class="packet" style="padding:18px 8px 12px;">
@@ -778,7 +961,7 @@
         <div class="bundle-price-row">
           <span class="cs-pill"><span class="dot"></span> Kickstarter Pricing Revealed At Launch</span>
         </div>
-        <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Reserve Your Box</button>
+        <button class="btn-primary" data-waitlist>Reserve Your Box</button>
       </div>
     </div>
   </div>
@@ -808,7 +991,7 @@
     <div class="founder-wrap">
       <div class="founder-photo reveal">
         <div class="fp-inner">
-          <img src="founder.webp" alt="Daniel Ziedins — Founder, SIX33 Fuel Systems & Seek First World" loading="lazy" onerror="this.style.display='none'" />
+          <img src="founder.webp" width="1080" height="1080" alt="Daniel Ziedins — Founder, SIX33 Fuel Systems & Seek First World" loading="lazy" decoding="async" onerror="this.style.display='none'" />
           <div class="fp-placeholder">
             <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
               <circle cx="50" cy="38" r="16"/>
@@ -948,7 +1131,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free shipping</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mission devotional included</li>
         </ul>
-        <button class="sub-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Notify Me At Launch</button>
+        <button class="sub-btn" data-waitlist>Notify Me At Launch</button>
       </div>
       <div class="sub-card featured reveal d1">
         <div class="sub-badge">Most Chosen</div>
@@ -961,7 +1144,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mission card deck &mdash; 30 days</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Early drop access + community invite</li>
         </ul>
-        <button class="sub-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Notify Me At Launch</button>
+        <button class="sub-btn" data-waitlist>Notify Me At Launch</button>
       </div>
       <div class="sub-card reveal d2">
         <div class="sub-name">Vanguard</div>
@@ -973,7 +1156,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Name on the founders' wall</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Lifetime backer status</li>
         </ul>
-        <button class="sub-btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Notify Me At Launch</button>
+        <button class="sub-btn" data-waitlist>Notify Me At Launch</button>
       </div>
     </div>
   </div>
@@ -1016,16 +1199,31 @@
 
 <section class="waitlist" id="waitlist">
   <div class="wrap reveal">
-    <img class="crown-mark" src="six33-logo.png" alt="SIX33 · Seek First crown shield logo" loading="lazy" />
+    <picture>
+      <source srcset="six33-logo.webp" type="image/webp" />
+      <img class="crown-mark" src="six33-logo.png" width="360" height="360" alt="SIX33 · Seek First crown shield logo" loading="lazy" decoding="async" />
+    </picture>
     <div class="cs-pill" style="margin-bottom:8px;"><span class="dot"></span> Coming Soon · Kickstarter Launching</div>
     <h2>Be First.<br/><span class="grad">Carry The Mission.</span></h2>
     <p class="w-lead">Drop your email to lock founding-backer access the moment SIX33 launches on Kickstarter. No spam &mdash; only the launch, the mission, and how to be part of it.</p>
     <div class="w-verse">&mdash;&mdash; <span>"Seek first the Kingdom of God."</span> Matthew 6:33 &mdash;&mdash;</div>
-    <form class="w-form" id="waitlistForm" onsubmit="return handleWaitlist(event)">
-      <input type="email" id="waitlistEmail" name="email" placeholder="your.email@example.com" required autocomplete="email" />
-      <button type="submit">Join The Waitlist</button>
+    <form class="w-form" id="waitlistForm" novalidate>
+      <label class="sr-only" for="waitlistName">First name (optional)</label>
+      <input type="text" id="waitlistName" name="full_name" placeholder="First name (optional)" autocomplete="given-name" maxlength="80" />
+      <label class="sr-only" for="waitlistEmail">Email address</label>
+      <input type="email" id="waitlistEmail" name="email" placeholder="your.email@example.com" required autocomplete="email" inputmode="email" maxlength="254" aria-describedby="waitlistError" />
+      <!-- bot guard: real people never fill this in -->
+      <div class="w-trap" aria-hidden="true">
+        <label for="waitlistWebsite">Website</label>
+        <input type="text" id="waitlistWebsite" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <button type="submit" id="waitlistBtn">
+        <span class="wb-label">Join The Waitlist</span>
+        <span class="wb-spin" aria-hidden="true"></span>
+      </button>
     </form>
-    <div class="w-success" id="waitlistSuccess">
+    <p class="w-error" id="waitlistError" role="alert"></p>
+    <div class="w-success" id="waitlistSuccess" role="status">
       ✓ You're on the list. We'll see you at launch &mdash; Built To Seek First.
     </div>
     <div class="w-meta">
@@ -1047,7 +1245,7 @@
       <span class="w">Impact The Culture.</span>
     </div>
     <div class="final-sub">Drink Better &nbsp;&bull;&nbsp; Live Better &nbsp;&bull;&nbsp; Seek First</div>
-    <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join The Waitlist</button>
+    <button class="btn-primary" data-waitlist>Join The Waitlist</button>
     <div class="final-verse">&mdash;&mdash; <span>Built To Seek First.</span> Matthew 6:33 &mdash;&mdash;</div>
   </div>
 </section>
@@ -1083,19 +1281,14 @@
         <h4>Seek First World</h4>
         <a href="https://www.seekfirst.world" target="_blank" rel="noopener">Visit seekfirst.world ↗</a>
         <a href="#sfw">Get Connected</a>
-        <a href="#">Lions Den Alliance</a>
-        <a href="#">Kingdom Connect</a>
-        <a href="#">Wholesale &amp; Ministry</a>
+        <a href="https://www.lionsdenalliance.com" target="_blank" rel="noopener">Lions Den Alliance ↗</a>
+        <a href="https://kingdom-connect.net" target="_blank" rel="noopener">Kingdom Connect ↗</a>
+        <a href="https://www.six33.world" target="_blank" rel="noopener">SIX33 World ↗</a>
+        <a href="mailto:hello@thykingdom.net?subject=SIX33%20Fuel%20-%20Wholesale%20%26%20Ministry">Wholesale &amp; Ministry</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 SIX33 Fuel Systems &mdash; Seek First World. All rights reserved.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12 a4 4 0 1 0 4 4 V4 c1 2 3 3 5 3"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 16 12 10 15 10 9" fill="currentColor"/></svg></a>
-        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4 L20 20 M20 4 L4 20"/></svg></a>
-      </div>
     </div>
   </div>
 </footer>
@@ -1105,17 +1298,92 @@
 <div class="cursor-blob" id="cursorBlob"></div>
 
 <script>
-  document.body.classList.add('has-banner');
+  const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // NAV scroll state
+  // NAV scroll state (rAF-throttled)
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+  let navTick = false;
+  window.addEventListener('scroll', () => {
+    if (navTick) return;
+    navTick = true;
+    requestAnimationFrame(() => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+      navTick = false;
+    });
+  }, { passive: true });
 
-  // Reveal-on-scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.14 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // The coming-soon banner wraps to a different height per viewport, so publish its
+  // real height and let the fixed nav sit directly beneath it.
+  const csBanner = document.querySelector('.cs-banner');
+  function syncBannerHeight() {
+    if (!csBanner) return;
+    const px = Math.ceil(csBanner.getBoundingClientRect().height);
+    if (px <= 0) return;
+    document.documentElement.style.setProperty('--banner-h', px + 'px');
+    // Set it on the nav too: the CSS custom property alone does not reliably
+    // win over the breakpoint rules, and the nav must never cover the banner.
+    if (nav) nav.style.top = px + 'px';
+  }
+  syncBannerHeight();
+  window.addEventListener('resize', syncBannerHeight, { passive: true });
+  window.addEventListener('load', syncBannerHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncBannerHeight);
+  if ('ResizeObserver' in window && csBanner) new ResizeObserver(syncBannerHeight).observe(csBanner);
+
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  function setMenu(open) {
+    nav.classList.toggle('menu-open', open);
+    document.body.classList.toggle('menu-locked', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  if (burger) {
+    burger.addEventListener('click', () => setMenu(!nav.classList.contains('menu-open')));
+    // Any nav link closes the panel so the anchor scroll is visible
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+    // Never leave the panel stuck open when resizing up to desktop
+    window.addEventListener('resize', () => { if (window.innerWidth > 640) setMenu(false); });
+  }
+
+  // Reveal-on-scroll.
+  // Geometry check is the primary path; IntersectionObserver is the optimisation.
+  // If IO never fires (headless capture, odd embed) content must still be visible.
+  const reveals = Array.from(document.querySelectorAll('.reveal'));
+
+  if (REDUCE_MOTION) {
+    reveals.forEach(el => el.classList.add('in'));
+  } else {
+    function revealVisible() {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach(el => {
+        if (el.classList.contains('in')) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92 && r.bottom > 0) el.classList.add('in');
+      });
+    }
+    revealVisible();
+    let revTick = false;
+    window.addEventListener('scroll', () => {
+      if (revTick) return;
+      revTick = true;
+      requestAnimationFrame(() => { revealVisible(); revTick = false; });
+    }, { passive: true });
+    window.addEventListener('resize', revealVisible, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.14 });
+      reveals.forEach(el => io.observe(el));
+    }
+
+    // Absolute backstop — nothing stays hidden past this point.
+    setTimeout(() => reveals.forEach(el => el.classList.add('in')), 2600);
+  }
 
   // Final words stagger
   const finalWords = document.getElementById('finalWords');
@@ -1132,6 +1400,7 @@
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseFloat(el.dataset.target);
+      if (REDUCE_MOTION) { el.textContent = target; countUpIO.unobserve(el); return; }
       const duration = 1400;
       const start = performance.now();
       function tick(now) {
@@ -1149,7 +1418,7 @@
   document.querySelectorAll('.count-up').forEach(el => countUpIO.observe(el));
 
   // Magnetic buttons (subtle pull toward cursor)
-  document.querySelectorAll('.magnetic').forEach(el => {
+  if (!REDUCE_MOTION) document.querySelectorAll('.magnetic').forEach(el => {
     const strength = 0.25;
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();
@@ -1161,7 +1430,7 @@
   });
 
   // 3D tilt on product cards + bundle visual
-  document.querySelectorAll('.product-card').forEach(card => {
+  if (!REDUCE_MOTION) document.querySelectorAll('.product-card').forEach(card => {
     card.classList.add('tilt');
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -1174,7 +1443,7 @@
 
   // Hero packet subtle parallax
   const heroPacket = document.querySelector('.hero-packet');
-  if (heroPacket) {
+  if (heroPacket && !REDUCE_MOTION) {
     window.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 18;
       const y = (e.clientY / window.innerHeight - 0.5) * 18;
@@ -1186,7 +1455,7 @@
 
   // Cursor glow blob (hover-capable devices)
   const blob = document.getElementById('cursorBlob');
-  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  if (!REDUCE_MOTION && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
     window.addEventListener('mousemove', (e) => {
       blob.classList.add('active');
       blob.style.left = e.clientX + 'px';
@@ -1204,27 +1473,160 @@
       const id = a.getAttribute('href');
       if (id === '#' || id.length < 2) return;
       const target = document.querySelector(id);
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: REDUCE_MOTION ? 'auto' : 'smooth', block: 'start' }); }
     });
   });
 
-  // Waitlist handler
-  function handleWaitlist(e) {
-    e.preventDefault();
-    const emailInput = document.getElementById('waitlistEmail');
-    const email = (emailInput.value || '').trim();
-    if (!email) return false;
-    try {
-      const stored = JSON.parse(localStorage.getItem('six33_waitlist') || '[]');
-      if (!stored.includes(email)) stored.push(email);
-      localStorage.setItem('six33_waitlist', JSON.stringify(stored));
-    } catch (_) {}
-    document.getElementById('waitlistForm').style.display = 'none';
-    document.getElementById('waitlistSuccess').classList.add('show');
-    showToast("You're on the list — built to seek first");
-    return false;
+  // Every "join / notify me / reserve" control routes here.
+  function goToWaitlist() {
+    const section = document.getElementById('waitlist');
+    if (!section) return;
+    section.scrollIntoView({ behavior: REDUCE_MOTION ? 'auto' : 'smooth', block: 'start' });
+
+    // Focus the field, but only once the scroll has come to rest — calling focus()
+    // mid-flight cancels an in-progress smooth scroll and strands the visitor.
+    const input = document.getElementById('waitlistEmail');
+    if (!input || input.offsetParent === null) return;
+    if (REDUCE_MOTION) { input.focus({ preventScroll: true }); return; }
+
+    let settled = false;
+    const focusOnce = () => {
+      if (settled) return;
+      settled = true;
+      input.focus({ preventScroll: true });
+    };
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', focusOnce, { once: true });
+      setTimeout(focusOnce, 2000); // backstop if scrollend never lands
+    } else {
+      // Poll until the position stops changing.
+      let last = -1, still = 0;
+      const timer = setInterval(() => {
+        if (Math.abs(window.scrollY - last) < 2) { still++; } else { still = 0; }
+        last = window.scrollY;
+        if (still >= 3) { clearInterval(timer); focusOnce(); }
+      }, 100);
+      setTimeout(() => { clearInterval(timer); focusOnce(); }, 2000);
+    }
   }
-  window.handleWaitlist = handleWaitlist;
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-waitlist]');
+    if (trigger) goToWaitlist();
+  });
+  // Keyboard parity for the card-shaped triggers
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const trigger = e.target.closest('[data-waitlist][role="button"]');
+    if (trigger) { e.preventDefault(); goToWaitlist(); }
+  });
+
+  // ── Waitlist → Supabase (TKN-MAIN, insert-only) ──────────────────
+  const SUPABASE_URL = 'https://vmpkiwfvnlzraabtjkig.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZtcGtpd2Z2bmx6cmFhYnRqa2lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjMwNzUsImV4cCI6MjA5MjA5OTA3NX0.Yh3reeJYrV1cG6jFIhFHm6apQqclol64D79cq9euy5E';
+  const WAITLIST_TABLE = 'six33_fuel_signups';
+
+  const wForm    = document.getElementById('waitlistForm');
+  const wEmail   = document.getElementById('waitlistEmail');
+  const wName    = document.getElementById('waitlistName');
+  const wTrap    = document.getElementById('waitlistWebsite');
+  const wBtn     = document.getElementById('waitlistBtn');
+  const wErr     = document.getElementById('waitlistError');
+  const wSuccess = document.getElementById('waitlistSuccess');
+
+  // Bot guard: humans take time to read and type. Bots post instantly.
+  const formLoadedAt = Date.now();
+  const MIN_FILL_MS = 2500;
+
+  function wShowError(msg) {
+    wErr.textContent = msg;
+    wErr.classList.add('show');
+    wEmail.setAttribute('aria-invalid', 'true');
+  }
+  function wClearError() {
+    wErr.classList.remove('show');
+    wErr.textContent = '';
+    wEmail.removeAttribute('aria-invalid');
+  }
+  function wSucceed() {
+    wForm.style.display = 'none';
+    wClearError();
+    wSuccess.classList.add('show');
+    showToast("You're on the list — built to seek first");
+  }
+
+  const EMAIL_RE = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/;
+
+  if (wForm) {
+    wEmail.addEventListener('input', wClearError);
+
+    wForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      wClearError();
+
+      const email = (wEmail.value || '').trim().toLowerCase();
+      const name  = (wName.value || '').trim();
+
+      if (!email)               return wShowError('Enter your email to join the waitlist.');
+      if (!EMAIL_RE.test(email)) return wShowError("That email doesn't look right — mind checking it?");
+
+      // Honeypot tripped, or submitted faster than a human can read the form.
+      // Show success so the bot moves on, but never write the row.
+      const elapsed = Date.now() - formLoadedAt;
+      if ((wTrap.value || '').trim() !== '' || elapsed < MIN_FILL_MS) {
+        wSucceed();
+        return;
+      }
+
+      wBtn.disabled = true;
+      wBtn.classList.add('loading');
+
+      const payload = {
+        email: email,
+        source: 'six33fuel.com',
+        metadata: {
+          page: 'coming-soon',
+          section: 'waitlist',
+          time_to_submit_ms: elapsed,
+          referrer: (document.referrer || '').slice(0, 300),
+          landing_path: location.pathname + location.search,
+          screen: window.innerWidth + 'x' + window.innerHeight,
+          tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || '')
+        }
+      };
+      if (name) payload.full_name = name;
+
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/' + WAITLIST_TABLE, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        // 409 = this email is already on the list. That is a success for the visitor.
+        if (res.ok || res.status === 409) {
+          wSucceed();
+          try {
+            localStorage.setItem('six33_waitlist_joined', '1');
+          } catch (_) {}
+        } else {
+          throw new Error('HTTP ' + res.status);
+        }
+      } catch (err) {
+        wShowError('Something went wrong on our end. Try again, or email hello@thykingdom.net.');
+        wBtn.disabled = false;
+        wBtn.classList.remove('loading');
+        return;
+      }
+
+      wBtn.disabled = false;
+      wBtn.classList.remove('loading');
+    });
+  }
 
   // Toast
   let toastTimer;
