@@ -35,8 +35,13 @@ six33-fuel-systems/
 ├── robots.txt              # Points crawlers at the sitemap
 ├── sitemap.xml             # Single-URL sitemap
 ├── manifest.webmanifest    # PWA/install metadata
-├── og.jpg                  # 1200×630 social share card
-├── six33-lineup.jpg/.webp  # Product lineup showcase
+├── privacy.html            # /privacy
+├── 404.html                # Branded not-found page
+├── llms.txt                # Plain-language summary for AI crawlers
+├── og.jpg                  # 1200×630 branded social share card
+├── six33-four-systems.*    # Showcase: the four launching systems
+├── six33-lineup.jpg/.webp  # Full six-product concept master (not shown)
+├── supabase/functions/six33-fuel-email/  # Waitlist + welcome email edge function
 ├── six33-logo.png/.webp    # Crown-shield mark (360px)
 ├── founder.webp            # Daniel Ziedins portrait
 ├── favicon-32.png          # Browser tab icon
@@ -57,38 +62,76 @@ footer.
 
 ## The waitlist
 
-The waitlist is the whole point of this site, so it writes to a real table.
+The waitlist is the whole point of this site, so it is built like the rest of the
+network's capture forms (same shape as Kingdom Hub).
 
-- **Database:** Thy Kingdom Network — MAIN (Supabase `vmpkiwfvnlzraabtjkig`)
-- **Table:** `public.six33_fuel_signups`
-- **Access:** RLS is on, with a single `anon` **INSERT** policy. Anonymous visitors
-  cannot read, update or delete rows. The page uses the anon key over PostgREST;
-  there is no server and no service-role key in the client.
-- **Duplicates:** the table has a unique index on `email`, so a repeat signup returns
-  `409` and the page treats that as success. Do **not** switch the request to
-  `Prefer: resolution=merge-duplicates` — upsert needs an UPDATE policy, which would
-  let anyone overwrite another person's row.
+```
+form ──POST /api/waitlist──▶ Vercel rewrite ──▶ edge fn six33-fuel-email
+                                                   ├─ rpc six33_fuel_subscribe   (validation, bot guard, flood cap, referral credit)
+                                                   ├─ rpc six33_fuel_claim_welcome (claim BEFORE send)
+                                                   ├─ Resend → welcome email      (release claim if the send fails)
+                                                   └─ { ok, is_new, ref_code, emailed }
+```
 
-### Bot guard
+- **Database:** TKN-MAIN (Supabase `vmpkiwfvnlzraabtjkig`), table `public.six33_fuel_signups`.
+- **No direct API access.** RLS is on with no policies and all grants revoked; the only
+  way in is the `six33_fuel_subscribe` RPC, which only the service role can call. So the
+  bot guard cannot be skipped by posting straight to Supabase.
+- **Edge function source** is tracked in `supabase/functions/six33-fuel-email/index.ts`.
+  Deploy changes with the Supabase CLI or MCP, `verify_jwt: false`.
+- **Same-origin routes** (rewrites in `vercel.json`):
+  - `POST /api/waitlist` — subscribe + welcome email
+  - `GET /api/ref?stats=CODE` — how many people a share link has brought in
+  - `GET|POST /api/unsubscribe?token=` — link + RFC 8058 one-click unsubscribe
+  - Preview the email: `https://vmpkiwfvnlzraabtjkig.supabase.co/functions/v1/six33-fuel-email?preview=welcome&name=Daniel`
+- **Sender:** `fuel@team.thykingdom.net` (the only verified Resend domain); replies go to
+  `hello@thykingdom.net`. The Resend key is read from `tkn_app_secrets`, never committed.
 
-Roughly 60% of a sibling site's list turned out to be bots, and their bounces are
-charged against the shared `team.thykingdom.net` sending domain. So this form runs
-two checks before it writes:
+### Bot guard (server-side)
 
-1. **Honeypot** — an off-screen `website` field. Any value means a bot.
-2. **Time to submit** — anything submitted under 2.5s after load is a bot.
+1. **Honeypot** — an off-screen `website` field.
+2. **Time to submit** — under 2.5s after page load.
+3. **Flood cap** — more than 300 signups in 10 minutes is refused.
 
-A tripped guard shows the normal success state and writes **nothing**, so the bot has
-no signal to adapt to. Real failures show an inline error instead. `time_to_submit_ms`
-is stored in `metadata` so the threshold can be audited against real traffic.
+A tripped honeypot or timer returns a normal-looking success and writes nothing.
+Roughly 60% of a sibling site's list was bots, and their bounces count against the
+shared `team.thykingdom.net` sending domain.
 
-### Reading the list
+### Referrals
+
+Every signup gets a 6-character `ref_code`. The success state shows a personal share
+link (`/?ref=CODE`), copy/WhatsApp/Text/Email/X/Facebook buttons, and a live count. An
+inbound `?ref=` is remembered in localStorage until that visitor signs up, and only a code
+that exists is credited.
 
 ```sql
-select email, full_name, created_at, metadata
-from public.six33_fuel_signups
-order by created_at desc;
+select * from public.six33_fuel_referral_leaderboard;   -- who brought whom in
+select email, full_name, ref_code, referred_by, created_at, metadata
+from public.six33_fuel_signups order by created_at desc;
 ```
+
+### Anonymous analytics
+
+`six33_fuel_track` (anon-callable, allowlisted names, 3000 per 10 min cap) writes to
+`six33_fuel_events`: `pageview`, `section_view`, `cta`, `signup`, `share`, `faq_open`,
+`outbound`, `ref_landing`. No cookies, IDs or emails. It fires only on the production host,
+never under automation, and `?notrack` opts a browser out.
+
+```sql
+select * from public.six33_fuel_event_daily order by day desc, n desc;
+```
+
+---
+
+## Content rules
+
+- **No invented social proof.** The old testimonials section quoted named people
+  reviewing products that don't exist yet; it is now "Who It's Built For". Real backer
+  stories go there after launch.
+- The showcase uses `six33-four-systems.*`, a crop of the four launching systems.
+  `six33-lineup.*` is the full six-product concept (incl. Endure and Alpha), kept as
+  the master but not shown.
+- The FAQ markup and the FAQPage JSON-LD must say the same thing — edit both together.
 
 ---
 
@@ -138,8 +181,8 @@ authors.
 
 - **Kickstarter URL** — the "Kickstarter Coming Soon" buttons are placeholders until
   the campaign is live.
-- **Welcome email** — the waitlist stores `email_subscribed` and an `unsub_token` ready
-  for a Resend journey, matching the other TKN sites. Nothing sends yet.
+- **Launch broadcast** — one welcome email sends today; the launch-day announcement to
+  the list still needs writing and sending.
 - **Social accounts** — the footer's social row was removed because no SIX33 Fuel
   accounts exist yet. The `.footer-social` CSS is still in place for when they do.
 - **Real product photography** — the four system cards render their packets in CSS.

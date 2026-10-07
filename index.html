@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://www.six33fuel.com/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="The SIX33 Fuel Systems lineup — Ignite, Flow, Recover and Rest stick packs." />
+<meta property="og:image:alt" content="SIX33 Fuel Systems — Fuel The Gospel. Impact Culture. Join the Kickstarter waitlist." />
 <meta property="og:url" content="https://www.six33fuel.com/" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_CA" />
@@ -32,7 +32,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   /* ============================================================
      SIX33 FUEL SYSTEMS — Coming Soon · Pre-Launch Experience
@@ -43,7 +43,7 @@
   :root {
     --black:#050505; --black-2:#0a0a0c; --black-3:#101015; --panel:#14141a;
     --line:rgba(255,255,255,0.08); --line-2:rgba(255,255,255,0.14);
-    --text:#f4f4f5; --text-dim:#a1a1aa; --text-faint:#5c5c66;
+    --text:#f4f4f5; --text-dim:#a1a1aa; --text-faint:#86868f; /* was #5c5c66 = 2.8–3.1:1, failed AA on every surface */
     --gold:#c9a25a; --gold-soft:#e3c987;
     --ignite:#ff5e1f; --ignite-glow:rgba(255,94,31,0.55);
     --flow:#19d3f3; --flow-glow:rgba(25,211,243,0.5);
@@ -106,13 +106,16 @@
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
   .hero h1 { font-family:var(--display); font-weight:700; font-size:clamp(2.9rem,7.2vw,6.8rem); line-height:0.94; letter-spacing:-0.01em; text-transform:uppercase; margin-bottom:8px; }
   .hero h1 .line { display:block; overflow:hidden; }
-  .hero h1 .line span { display:block; opacity:0; transform:translateY(110%); animation:rise 1s var(--ease) forwards; }
+  /* LCP: the headline is opaque from the first frame and only slides (a fade from
+     opacity 0 delays Largest Contentful Paint until the animation ends). */
+  .hero h1 .line span { display:block; transform:translateY(58%); animation:slideUp 1s var(--ease) forwards; }
+  @keyframes slideUp { to { transform:translateY(0); } }
   .hero h1 .line:nth-child(1) span { animation-delay:0.2s; }
   .hero h1 .line:nth-child(2) span { animation-delay:0.32s; }
   .hero h1 .line:nth-child(3) span { animation-delay:0.44s; }
   .hero h1 .grad { background:linear-gradient(100deg,var(--ignite),var(--flow) 50%,var(--rest)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
   @keyframes rise { to{opacity:1; transform:translateY(0);} }
-  .hero-sub { max-width:540px; font-size:1.06rem; color:var(--text-dim); margin:26px 0 8px; opacity:0; transform:translateY(20px); animation:rise 0.9s var(--ease) 0.7s forwards; }
+  .hero-sub { max-width:540px; font-size:1.06rem; color:var(--text-dim); margin:26px 0 8px; transform:translateY(14px); animation:slideUp 0.9s var(--ease) 0.25s forwards; }
   .hero-verse { font-family:var(--mono); font-size:0.7rem; letter-spacing:0.16em; color:var(--text-faint); margin-bottom:34px; text-transform:uppercase; opacity:0; animation:rise 0.9s var(--ease) 0.85s forwards; }
   .hero-verse span { color:var(--gold); }
   .hero-actions { display:flex; gap:16px; flex-wrap:wrap; opacity:0; transform:translateY(20px); animation:rise 0.9s var(--ease) 1s forwards; }
@@ -252,7 +255,7 @@
 
   /* LIFESTYLE */
   .lifestyle-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:58px; }
-  .ls-card { border:1px solid var(--line); border-radius:8px; overflow:hidden; position:relative; min-height:260px; background:linear-gradient(180deg,var(--black-3),var(--black)); display:flex; flex-direction:column; justify-content:flex-end; padding:26px; transition:all 0.5s var(--ease); cursor:pointer; }
+  .ls-card { border:1px solid var(--line); border-radius:8px; overflow:hidden; position:relative; min-height:260px; background:linear-gradient(180deg,var(--black-3),var(--black)); display:flex; flex-direction:column; justify-content:flex-end; padding:26px; transition:all 0.5s var(--ease); }
   .ls-card::before { content:""; position:absolute; inset:0; opacity:0.5; transition:opacity 0.5s var(--ease); background:radial-gradient(circle at 70% 20%,var(--lsglow),transparent 65%); }
   .ls-card:hover { transform:translateY(-8px); border-color:var(--line-2); }
   .ls-card:hover::before { opacity:1; }
@@ -377,6 +380,64 @@
   .w-meta .x { width:1px; height:10px; background:var(--line-2); }
   .w-success { display:none; padding:24px; border:1px solid var(--recover); background:rgba(79,209,60,0.06); border-radius:4px; color:var(--recover); font-family:var(--mono); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; max-width:520px; margin:0 auto; }
   .w-success.show { display:block; animation:rise 0.6s var(--ease); }
+
+  /* ── Built For (replaces invented testimonials) ── */
+  .bf-systems { display:flex; gap:8px; margin-bottom:18px; }
+  .bf-systems span { font-family:var(--mono); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; border:1px solid currentColor; border-radius:100px; padding:5px 11px; }
+  .testi { border-top:2px solid var(--bf, var(--line)); }
+  .bf-note { text-align:center; margin-top:40px; font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-faint); }
+  .bf-note a { color:var(--gold); border-bottom:1px solid rgba(201,162,90,0.4); padding-bottom:2px; margin-left:6px; }
+  .bf-note a:hover { color:var(--gold-soft); }
+
+  /* ── Lifestyle: honest "film at launch" label instead of a play button ── */
+  .ls-soon { position:absolute; top:22px; right:22px; font-family:var(--mono); font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); border:1px solid var(--line-2); border-radius:100px; padding:6px 12px; background:rgba(0,0,0,0.45); backdrop-filter:blur(8px); }
+
+  /* ── Trust row label ── */
+  .trust-label { text-align:center; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--text-faint); margin-bottom:22px; }
+
+  /* ── FAQ ── */
+  .faq { padding:120px 0; }
+  .faq-list { max-width:820px; margin:54px auto 0; border-top:1px solid var(--line); }
+  .faq-item { border-bottom:1px solid var(--line); }
+  .faq-item summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:24px 4px; font-family:var(--display); font-weight:500; font-size:1.12rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--text); transition:color 0.3s var(--ease); }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary:hover { color:var(--gold-soft); }
+  .faq-icon { position:relative; flex:0 0 18px; height:18px; }
+  .faq-icon::before, .faq-icon::after { content:""; position:absolute; left:0; right:0; top:50%; height:1.5px; background:var(--ignite); transition:transform 0.35s var(--ease); }
+  .faq-icon::after { transform:rotate(90deg); }
+  .faq-item[open] .faq-icon::after { transform:rotate(0deg); }
+  .faq-a { padding:0 4px 26px; max-width:680px; }
+  .faq-a p { color:var(--text-dim); font-size:0.98rem; line-height:1.75; }
+  .faq-a a { color:var(--gold); border-bottom:1px solid rgba(201,162,90,0.4); }
+
+  /* ── Waitlist: privacy line + share panel ── */
+  .w-privacy { margin:16px auto 0; max-width:520px; font-size:0.78rem; color:var(--text-faint); }
+  .w-privacy a { color:var(--text-dim); border-bottom:1px solid var(--line-2); }
+  .share-panel { display:none; max-width:560px; margin:22px auto 0; text-align:left; border:1px solid rgba(255,94,31,0.35); background:linear-gradient(135deg,rgba(255,94,31,0.08),rgba(255,255,255,0.01)); border-radius:8px; padding:26px; }
+  .share-panel.show { display:block; animation:rise 0.6s var(--ease); }
+  .sp-title { font-family:var(--display); font-weight:700; font-size:1.5rem; text-transform:uppercase; letter-spacing:0.02em; line-height:1.1; }
+  .sp-lead { color:var(--text-dim); font-size:0.92rem; margin:8px 0 18px; }
+  .sp-link { display:flex; gap:8px; }
+  .sp-link input { flex:1; min-width:0; padding:14px 16px; background:rgba(0,0,0,0.45); border:1px dashed rgba(201,162,90,0.5); border-radius:3px; color:var(--gold-soft); font-family:var(--mono); font-size:0.82rem; }
+  .sp-copy { font-family:var(--display); font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; padding:0 20px; background:var(--ignite); color:#000; border-radius:3px; white-space:nowrap; transition:all 0.3s var(--ease); }
+  .sp-copy:hover { box-shadow:0 8px 30px var(--ignite-glow); }
+  .sp-copy.done { background:var(--recover); }
+  .sp-channels { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .sp-channels a, .sp-channels button { font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-dim); border:1px solid var(--line-2); border-radius:100px; padding:8px 14px; transition:all 0.3s var(--ease); }
+  .sp-channels a:hover, .sp-channels button:hover { color:var(--text); border-color:var(--ignite); }
+  .sp-count { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-faint); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .sp-count b { color:var(--gold); font-size:0.9rem; }
+  .sp-reset { color:var(--text-faint); text-decoration:underline; text-underline-offset:3px; font:inherit; letter-spacing:inherit; text-transform:inherit; }
+
+  /* ── Invited-by banner (arrived through someone's share link) ── */
+  .invite-note { display:none; max-width:520px; margin:0 auto 18px; font-family:var(--mono); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,162,90,0.35); border-radius:100px; padding:9px 16px; }
+  .invite-note.show { display:inline-block; }
+  @media (max-width:640px) {
+    .faq { padding:80px 0; }
+    .faq-item summary { font-size:0.98rem; }
+    .sp-link { flex-direction:column; }
+    .sp-copy { padding:14px; }
+  }
 
   /* Accessibility helper */
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
@@ -593,7 +654,9 @@
         "name": "Seek First World",
         "url": "https://www.seekfirst.world"
       },
-      "founder": { "@id": "https://www.six33fuel.com/#founder" }
+      "founder": {
+        "@id": "https://www.six33fuel.com/#founder"
+      }
     },
     {
       "@type": "Person",
@@ -601,7 +664,9 @@
       "name": "Daniel Ziedins",
       "url": "https://danielziedins.com",
       "jobTitle": "Founder",
-      "worksFor": { "@id": "https://www.six33fuel.com/#organization" }
+      "worksFor": {
+        "@id": "https://www.six33fuel.com/#organization"
+      }
     },
     {
       "@type": "WebSite",
@@ -609,15 +674,21 @@
       "url": "https://www.six33fuel.com/",
       "name": "SIX33 Fuel Systems",
       "inLanguage": "en",
-      "publisher": { "@id": "https://www.six33fuel.com/#organization" }
+      "publisher": {
+        "@id": "https://www.six33fuel.com/#organization"
+      }
     },
     {
       "@type": "WebPage",
       "@id": "https://www.six33fuel.com/#webpage",
       "url": "https://www.six33fuel.com/",
       "name": "SIX33 Fuel Systems — Coming Soon · Built To Seek First",
-      "isPartOf": { "@id": "https://www.six33fuel.com/#website" },
-      "about": { "@id": "https://www.six33fuel.com/#organization" },
+      "isPartOf": {
+        "@id": "https://www.six33fuel.com/#website"
+      },
+      "about": {
+        "@id": "https://www.six33fuel.com/#organization"
+      },
       "primaryImageOfPage": "https://www.six33fuel.com/og.jpg"
     },
     {
@@ -625,39 +696,131 @@
       "@id": "https://www.six33fuel.com/#lineup",
       "name": "SIX33 Fuel Systems Lineup",
       "description": "Four powdered fuel systems: Ignite for energy and focus, Flow for deep work, Recover for electrolytes and recovery, and Rest for sleep and nervous-system support.",
-      "brand": { "@id": "https://www.six33fuel.com/#organization" },
+      "brand": {
+        "@id": "https://www.six33fuel.com/#organization"
+      },
       "image": "https://www.six33fuel.com/og.jpg",
       "hasVariant": [
-        { "@type": "Product", "name": "SIX33 Ignite", "description": "Energy + focus. Romans 12:11.", "brand": { "@id": "https://www.six33fuel.com/#organization" } },
-        { "@type": "Product", "name": "SIX33 Flow", "description": "Productivity + deep work. Colossians 3:23.", "brand": { "@id": "https://www.six33fuel.com/#organization" } },
-        { "@type": "Product", "name": "SIX33 Recover", "description": "Recovery + electrolytes. Psalm 23:3.", "brand": { "@id": "https://www.six33fuel.com/#organization" } },
-        { "@type": "Product", "name": "SIX33 Rest", "description": "Sleep + nervous system. Psalm 4:8.", "brand": { "@id": "https://www.six33fuel.com/#organization" } }
+        {
+          "@type": "Product",
+          "name": "SIX33 Ignite",
+          "description": "Energy + focus. Romans 12:11.",
+          "brand": {
+            "@id": "https://www.six33fuel.com/#organization"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "SIX33 Flow",
+          "description": "Productivity + deep work. Colossians 3:23.",
+          "brand": {
+            "@id": "https://www.six33fuel.com/#organization"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "SIX33 Recover",
+          "description": "Recovery + electrolytes. Psalm 23:3.",
+          "brand": {
+            "@id": "https://www.six33fuel.com/#organization"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "SIX33 Rest",
+          "description": "Sleep + nervous system. Psalm 4:8.",
+          "brand": {
+            "@id": "https://www.six33fuel.com/#organization"
+          }
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "@id": "https://www.six33fuel.com/#faq",
-      "isPartOf": { "@id": "https://www.six33fuel.com/#webpage" },
+      "isPartOf": {
+        "@id": "https://www.six33fuel.com/#webpage"
+      },
       "mainEntity": [
         {
           "@type": "Question",
           "name": "When does SIX33 Fuel Systems launch?",
-          "acceptedAnswer": { "@type": "Answer", "text": "SIX33 Fuel Systems launches on Kickstarter. Join the waitlist to be notified the moment the campaign goes live and to lock in founding-backer pricing." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SIX33 launches on Kickstarter. The date hasn't been announced yet — waitlist members hear first, before it's announced anywhere else."
+          }
         },
         {
           "@type": "Question",
-          "name": "What are the four SIX33 fuel systems?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Ignite for energy and focus, Flow for productivity and deep work, Recover for recovery and electrolytes, and Rest for sleep and nervous-system support. Each system carries its own scripture." }
+          "name": "What are the four SIX33 systems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ignite for energy and focus, Flow for productivity and deep work, Recover for recovery and electrolytes, and Rest for sleep and nervous-system support. Each is a powdered stick pack carrying its own scripture."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much will SIX33 cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pricing is revealed on launch day. There will be three backer tiers — Scout (one system), Operator (the full four-system box) and Vanguard (the founding circle) — and founding backers get the campaign's lowest pricing."
+          }
         },
         {
           "@type": "Question",
           "name": "What does joining the waitlist get me?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Waitlist members get first access to the Kickstarter campaign, founding-backer tier pricing, and first-run product. No spam — only the launch and the mission." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "First word the moment the Kickstarter goes live, access to founding-backer pricing, and first-run boxes. You'll get one welcome email now, and after that only launch news and the mission — no spam."
+          }
         },
         {
           "@type": "Question",
-          "name": "Who is behind SIX33 Fuel Systems?",
-          "acceptedAnswer": { "@type": "Answer", "text": "SIX33 Fuel Systems is founded by Daniel Ziedins and is a movement by Seek First World, built on Matthew 6:33 — seek first the Kingdom of God." }
+          "name": "What's in each packet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Full ingredient panels for every system will be published before the campaign goes live, so you can see exactly what you're backing. The standard we're building to: clean ingredients, nothing artificial, lab tested."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is SIX33 a Christian company?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. SIX33 is a movement by Seek First World, named for Matthew 6:33 — seek first the Kingdom of God. Scripture is printed on every packet. The fuel is the doorway; the gospel is the mission."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does my share link work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you join, you get a personal link. Everyone who joins the waitlist through it is counted to your name, and you can check your count on this page anytime."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can my church, gym or team carry SIX33?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We'd love that. Email hello@thykingdom.net about wholesale and ministry partnerships and we'll be in touch before launch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is behind SIX33?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SIX33 Fuel Systems was founded by Daniel Ziedins and is part of Seek First World and the Thy Kingdom Network."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I unsubscribe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every email has a one-click unsubscribe link. We never sell or share your email — see the privacy note."
+          }
         }
       ]
     }
@@ -699,6 +862,7 @@
     <a href="#products">Systems</a>
     <a href="#founder">The Founder</a>
     <a href="#kickstarter">Kickstarter</a>
+    <a href="#faq">FAQ</a>
   </div>
   <button class="nav-cta magnetic" data-waitlist>Join Waitlist</button>
   <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -726,9 +890,9 @@
       </a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num count-up" data-target="4">0</div><div class="lbl">Fuel Systems</div></div>
+      <div class="hero-stat"><div class="num count-up" data-target="4">4</div><div class="lbl">Fuel Systems</div></div>
       <div class="hero-stat"><div class="num">0g</div><div class="lbl">Artificial Crap</div></div>
-      <div class="hero-stat"><div class="num count-up" data-target="1">0</div><div class="lbl">Gospel Mission</div></div>
+      <div class="hero-stat"><div class="num count-up" data-target="1">1</div><div class="lbl">Gospel Mission</div></div>
       <div class="hero-stat"><div class="num">∞</div><div class="lbl">Cultural Impact</div></div>
     </div>
   </div>
@@ -770,8 +934,8 @@
     <div class="showcase-frame reveal d1" style="position:relative;">
       <div class="cs-corner"><span class="cs-pill"><span class="dot"></span> Coming Soon</span></div>
       <picture>
-        <source srcset="six33-lineup.webp" type="image/webp" />
-        <img src="six33-lineup.jpg" width="1536" height="1024" alt="SIX33 Fuel Systems lineup — Ignite, Flow, Recover, Rest stick packs with the Seek First World box set" loading="lazy" decoding="async" />
+        <source srcset="six33-four-systems.webp" type="image/webp" />
+        <img src="six33-four-systems.jpg" width="1010" height="497" alt="The four SIX33 stick packs — Ignite (energy + focus, Romans 12:11), Flow (deep work, Colossians 3:23), Recover (electrolytes, Psalm 23:3) and Rest (sleep, Psalm 4:8)" loading="lazy" decoding="async" />
       </picture>
     </div>
     <div class="showcase-cap reveal d2">Ignite &bull; Flow &bull; Recover &bull; Rest &nbsp;&mdash;&nbsp; Built To Seek First</div>
@@ -875,6 +1039,7 @@
 
 <div class="trust">
   <div class="wrap">
+    <div class="trust-label reveal">The SIX33 Standard</div>
     <div class="trust-row">
       <div class="trust-item reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 2 C7 5 5 9 5 13 a7 7 0 0 0 14 0 c0-2-1-4-2-6 M9 13 l2 2 4-5"/></svg>
@@ -997,7 +1162,7 @@
               <circle cx="50" cy="38" r="16"/>
               <path d="M20 86 c0-18 14-28 30-28 s30 10 30 28"/>
             </svg>
-            <div>Drop founder.png<br/>into /six33/ folder</div>
+            <div>Daniel Ziedins<br/>Founder</div>
           </div>
           <div class="fp-overlay"></div>
         </div>
@@ -1041,27 +1206,27 @@
     </div>
     <div class="lifestyle-grid">
       <div class="ls-card big reveal" style="--lsglow:var(--ignite-glow);">
-        <div class="ls-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg></div>
+        <div class="ls-soon">Film &middot; At Launch</div>
         <div class="ls-cat">Athlete Culture</div>
         <div class="ls-title">5AM. The work starts before the world wakes.</div>
       </div>
       <div class="ls-card tall reveal d1" style="--lsglow:var(--flow-glow);">
-        <div class="ls-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg></div>
+        <div class="ls-soon">Film &middot; At Launch</div>
         <div class="ls-cat">Builder Culture</div>
         <div class="ls-title">Deep work, fueled by Flow.</div>
       </div>
       <div class="ls-card small reveal" style="--lsglow:var(--recover-glow);">
-        <div class="ls-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg></div>
+        <div class="ls-soon">Film &middot; At Launch</div>
         <div class="ls-cat">Family Culture</div>
         <div class="ls-title">Discipline at the dinner table.</div>
       </div>
       <div class="ls-card small reveal d1" style="--lsglow:var(--rest-glow);">
-        <div class="ls-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg></div>
+        <div class="ls-soon">Film &middot; At Launch</div>
         <div class="ls-cat">Travel Culture</div>
         <div class="ls-title">Mission, anywhere.</div>
       </div>
       <div class="ls-card small reveal d2" style="--lsglow:var(--ignite-glow);">
-        <div class="ls-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg></div>
+        <div class="ls-soon">Film &middot; At Launch</div>
         <div class="ls-cat">Church Culture</div>
         <div class="ls-title">Faith, on display.</div>
       </div>
@@ -1069,47 +1234,31 @@
   </div>
 </section>
 
-<section id="testimonials" style="background:var(--black-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+<section id="built-for" style="background:var(--black-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
-      <div class="eyebrow" style="justify-content:center;">The Brotherhood</div>
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto;">
+      <div class="eyebrow" style="justify-content:center;">Who It's Built For</div>
       <h2 class="sec-title">Faith Fueled<br/>Performance.</h2>
+      <p class="sec-lead" style="margin:0 auto;">SIX33 is being built for people who carry something &mdash; a team, a company, a family, a calling. Here's who we have in mind.</p>
     </div>
     <div class="testi-grid">
-      <div class="testi reveal">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-        </div>
-        <p class="testi-quote">"IGNITE replaced three cups of coffee and the 2pm crash. Clean energy that actually matches the pace I'm trying to live at."</p>
-        <div class="testi-person"><div class="testi-avatar">MJ</div><div><div class="testi-name">Marcus J.</div><div class="testi-role">Founder / Athlete</div></div></div>
+      <div class="testi reveal" style="--bf:var(--ignite);">
+        <div class="bf-systems"><span style="color:var(--ignite);">Ignite</span><span style="color:var(--recover);">Recover</span></div>
+        <p class="testi-quote">For the one who's up at 5AM &mdash; training before the world wakes, building before the inbox opens. Ignite to start strong. Recover to go again tomorrow.</p>
+        <div class="testi-person"><div class="testi-avatar" aria-hidden="true">01</div><div><div class="testi-name">Athletes &amp; Founders</div><div class="testi-role">Romans 12:11 &middot; Psalm 23:3</div></div></div>
       </div>
-      <div class="testi reveal d1">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-        </div>
-        <p class="testi-quote">"It's the small ritual that resets my head. Tear, pour, pray, go. FLOW is now part of how I build."</p>
-        <div class="testi-person"><div class="testi-avatar">AT</div><div><div class="testi-name">Alana T.</div><div class="testi-role">Creative Director</div></div></div>
+      <div class="testi reveal d1" style="--bf:var(--flow);">
+        <div class="bf-systems"><span style="color:var(--flow);">Flow</span></div>
+        <p class="testi-quote">For deep work that honours God with excellence &mdash; the studio, the code, the sermon prep, the exam. Flow for the hours that matter most. Tear. Pour. Pray. Go.</p>
+        <div class="testi-person"><div class="testi-avatar" aria-hidden="true">02</div><div><div class="testi-name">Builders &amp; Students</div><div class="testi-role">Colossians 3:23</div></div></div>
       </div>
-      <div class="testi reveal d2">
-        <div class="testi-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
-        </div>
-        <p class="testi-quote">"RECOVER got me through training camp without the wall. REST got me through the recovery. And every packet preaches scripture to my players. This is a system, not a supplement."</p>
-        <div class="testi-person"><div class="testi-avatar">DK</div><div><div class="testi-name">David K.</div><div class="testi-role">Coach / Father</div></div></div>
+      <div class="testi reveal d2" style="--bf:var(--rest);">
+        <div class="bf-systems"><span style="color:var(--recover);">Recover</span><span style="color:var(--rest);">Rest</span></div>
+        <p class="testi-quote">For the one carrying a team or a household. Recover after the effort, Rest before the next day &mdash; with scripture on every packet for the people who are watching how you live.</p>
+        <div class="testi-person"><div class="testi-avatar" aria-hidden="true">03</div><div><div class="testi-name">Coaches &amp; Parents</div><div class="testi-role">Psalm 23:3 &middot; Psalm 4:8</div></div></div>
       </div>
     </div>
+    <p class="bf-note reveal">Real stories from founding backers will live here after launch. <a href="#waitlist" data-waitlist data-cta="built-for">Want yours to be one of them? Join the waitlist &rarr;</a></p>
   </div>
 </section>
 
@@ -1134,7 +1283,7 @@
         <button class="sub-btn" data-waitlist>Notify Me At Launch</button>
       </div>
       <div class="sub-card featured reveal d1">
-        <div class="sub-badge">Most Chosen</div>
+        <div class="sub-badge">The Full System</div>
         <div class="sub-name">Operator</div>
         <div class="sub-tag">Full 4-System Box</div>
         <div class="sub-price"><span class="cs-pill"><span class="dot"></span> Pricing At Launch</span></div>
@@ -1166,9 +1315,9 @@
   <div class="wrap">
     <div class="rewards-wrap">
       <div class="reveal">
-        <div class="eyebrow">The Outpost Rewards</div>
+        <div class="eyebrow">The Outpost Rewards &middot; Launching With SIX33</div>
         <h2 class="sec-title">Buy In.<br/>Belong.</h2>
-        <p class="sec-lead">When you fuel with SIX33, you join something bigger than a brand. Every pack earns Mission Points &mdash; redeemable for gear, drops, and access. Climb the ranks. Carry the others.</p>
+        <p class="sec-lead">When you fuel with SIX33, you join something bigger than a brand. Once we launch, every pack will earn Mission Points &mdash; redeemable for gear, drops, and access. Climb the ranks. Carry the others.</p>
         <p style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;color:var(--text-faint);margin-top:24px;text-transform:uppercase;border-left:2px solid var(--gold);padding-left:14px;">"Run with endurance the race set before you." &mdash; Hebrews 12:1</p>
       </div>
       <div class="rewards-tiers reveal d1">
@@ -1197,6 +1346,57 @@
   </div>
 </section>
 
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto;">
+      <div class="eyebrow" style="justify-content:center;">Questions &middot; Answered</div>
+      <h2 class="sec-title">Before You<br/>Join.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary><span>When does SIX33 Fuel Systems launch?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>SIX33 launches on Kickstarter. The date hasn't been announced yet &mdash; waitlist members hear first, before it's announced anywhere else.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>What are the four SIX33 systems?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Ignite for energy and focus, Flow for productivity and deep work, Recover for recovery and electrolytes, and Rest for sleep and nervous-system support. Each is a powdered stick pack carrying its own scripture.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>How much will SIX33 cost?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Pricing is revealed on launch day. There will be three backer tiers &mdash; Scout (one system), Operator (the full four-system box) and Vanguard (the founding circle) &mdash; and founding backers get the campaign's lowest pricing.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>What does joining the waitlist get me?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>First word the moment the Kickstarter goes live, access to founding-backer pricing, and first-run boxes. You'll get one welcome email now, and after that only launch news and the mission &mdash; no spam.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>What's in each packet?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Full ingredient panels for every system will be published before the campaign goes live, so you can see exactly what you're backing. The standard we're building to: clean ingredients, nothing artificial, lab tested.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>Is SIX33 a Christian company?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Yes. SIX33 is a movement by Seek First World, named for Matthew 6:33 &mdash; seek first the Kingdom of God. Scripture is printed on every packet. The fuel is the doorway; the gospel is the mission.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>How does my share link work?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>When you join, you get a personal link. Everyone who joins the waitlist through it is counted to your name, and you can check your count on this page anytime.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>Can my church, gym or team carry SIX33?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>We'd love that. Email <a href="mailto:hello@thykingdom.net?subject=SIX33%20Fuel%20-%20Wholesale%20%26%20Ministry">hello@thykingdom.net</a> about wholesale and ministry partnerships and we'll be in touch before launch.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>Who is behind SIX33?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>SIX33 Fuel Systems was founded by Daniel Ziedins and is part of Seek First World and the Thy Kingdom Network.</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary><span>How do I unsubscribe?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Every email has a one-click unsubscribe link. We never sell or share your email &mdash; see the <a href="/privacy">privacy note</a>.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="waitlist" id="waitlist">
   <div class="wrap reveal">
     <picture>
@@ -1207,6 +1407,7 @@
     <h2>Be First.<br/><span class="grad">Carry The Mission.</span></h2>
     <p class="w-lead">Drop your email to lock founding-backer access the moment SIX33 launches on Kickstarter. No spam &mdash; only the launch, the mission, and how to be part of it.</p>
     <div class="w-verse">&mdash;&mdash; <span>"Seek first the Kingdom of God."</span> Matthew 6:33 &mdash;&mdash;</div>
+    <div class="invite-note" id="inviteNote" role="status">&#10022; A friend invited you &mdash; join them on the list</div>
     <form class="w-form" id="waitlistForm" novalidate>
       <label class="sr-only" for="waitlistName">First name (optional)</label>
       <input type="text" id="waitlistName" name="full_name" placeholder="First name (optional)" autocomplete="given-name" maxlength="80" />
@@ -1223,8 +1424,30 @@
       </button>
     </form>
     <p class="w-error" id="waitlistError" role="alert"></p>
-    <div class="w-success" id="waitlistSuccess" role="status">
+    <p class="w-privacy" id="waitlistPrivacy">One welcome email now, then only launch news. Unsubscribe in one click. <a href="/privacy">Privacy</a></p>
+    <div class="w-success" id="waitlistSuccess" role="status" tabindex="-1">
       ✓ You're on the list. We'll see you at launch &mdash; Built To Seek First.
+    </div>
+    <div class="share-panel" id="sharePanel" aria-labelledby="spTitle">
+      <div class="sp-title" id="spTitle">Bring your people.</div>
+      <p class="sp-lead">This movement grows one conversation at a time. Here's your personal link &mdash; everyone who joins through it is counted to your name.</p>
+      <div class="sp-link">
+        <label class="sr-only" for="spUrl">Your share link</label>
+        <input id="spUrl" type="text" readonly value="" />
+        <button type="button" class="sp-copy" id="spCopy">Copy Link</button>
+      </div>
+      <div class="sp-channels" id="spChannels">
+        <button type="button" data-share="native" id="spNative" hidden>Share&hellip;</button>
+        <a data-share="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a data-share="sms">Text</a>
+        <a data-share="email">Email</a>
+        <a data-share="x" target="_blank" rel="noopener">X</a>
+        <a data-share="facebook" target="_blank" rel="noopener">Facebook</a>
+      </div>
+      <div class="sp-count">
+        <span>Joined through your link: <b id="spCount">&ndash;</b></span>
+        <button type="button" class="sp-reset" id="spReset">Add another email</button>
+      </div>
     </div>
     <div class="w-meta">
       <span>0 Spam, Ever</span>
@@ -1276,6 +1499,8 @@
         <a href="#kickstarter">Kickstarter</a>
         <a href="#rewards">Outpost Rewards</a>
         <a href="#bundle">The Full System</a>
+        <a href="#faq">FAQ</a>
+        <a href="/privacy">Privacy</a>
       </div>
       <div class="footer-col">
         <h4>Seek First World</h4>
@@ -1520,11 +1745,73 @@
     if (trigger) { e.preventDefault(); goToWaitlist(); }
   });
 
-  // ── Waitlist → Supabase (TKN-MAIN, insert-only) ──────────────────
+  // ── First-party analytics (anonymous; production host only) ─────────
+  // Counts, never people: no cookies, no IDs, no email. Opt out with ?notrack.
   const SUPABASE_URL = 'https://vmpkiwfvnlzraabtjkig.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZtcGtpd2Z2bmx6cmFhYnRqa2lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjMwNzUsImV4cCI6MjA5MjA5OTA3NX0.Yh3reeJYrV1cG6jFIhFHm6apQqclol64D79cq9euy5E';
-  const WAITLIST_TABLE = 'six33_fuel_signups';
+  const PROD_HOSTS = ['www.six33fuel.com', 'six33fuel.com'];
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} },
+    del(k) { try { localStorage.removeItem(k); } catch (_) {} },
+  };
+  const params = new URLSearchParams(location.search);
+  if (params.has('notrack')) store.set('six33_notrack', '1');
+  const TRACKING = PROD_HOSTS.includes(location.hostname) && !navigator.webdriver && !store.get('six33_notrack');
 
+  function track(name, label, ref) {
+    if (!TRACKING) return;
+    try {
+      fetch(SUPABASE_URL + '/rest/v1/rpc/six33_fuel_track', {
+        method: 'POST',
+        keepalive: true,
+        headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_name: name, p_label: label || null, p_path: location.pathname, p_ref: ref || null }),
+      }).catch(() => {});
+    } catch (_) {}
+  }
+  window.six33Track = track;
+
+  const extRef = (() => { try { const r = document.referrer && new URL(document.referrer); return r && r.hostname !== location.hostname ? r.hostname : null; } catch (_) { return null; } })();
+  track('pageview', null, extRef);
+
+  // Which sections people actually reach (once each).
+  if ('IntersectionObserver' in window) {
+    const seen = new Set();
+    const secIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting || seen.has(e.target.id)) return;
+        seen.add(e.target.id);
+        track('section_view', e.target.id);
+        secIO.unobserve(e.target);
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('section[id]').forEach(s => secIO.observe(s));
+  }
+
+  // Outbound links (Seek First World, sibling sites).
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="http"]');
+    if (a && !a.href.includes(location.hostname)) { try { track('outbound', new URL(a.href).hostname); } catch (_) {} }
+  });
+  document.querySelectorAll('.faq-item').forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) track('faq_open', d.querySelector('summary span').textContent.slice(0, 80));
+  }));
+
+  // ── Referral capture ────────────────────────────────────────────────
+  // ?ref=CODE from someone's share link; remembered so a later visit still credits them.
+  const REF_RE = /^[A-Za-z0-9]{4,12}$/;
+  const inboundRef = params.get('ref');
+  if (inboundRef && REF_RE.test(inboundRef)) {
+    store.set('six33_inbound_ref', inboundRef.toUpperCase());
+    track('ref_landing', inboundRef.toUpperCase());
+  }
+  const utm = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'src'].forEach(k => { if (params.get(k)) utm[k] = params.get(k).slice(0, 80); });
+
+  // ── Waitlist → /api/waitlist (six33-fuel-email edge function) ───────
+  // The server owns validation, the bot guard and the flood cap; the client
+  // checks only enough to give fast, friendly feedback.
   const wForm    = document.getElementById('waitlistForm');
   const wEmail   = document.getElementById('waitlistEmail');
   const wName    = document.getElementById('waitlistName');
@@ -1532,10 +1819,17 @@
   const wBtn     = document.getElementById('waitlistBtn');
   const wErr     = document.getElementById('waitlistError');
   const wSuccess = document.getElementById('waitlistSuccess');
-
-  // Bot guard: humans take time to read and type. Bots post instantly.
+  const wPrivacy = document.getElementById('waitlistPrivacy');
+  const invite   = document.getElementById('inviteNote');
+  const panel    = document.getElementById('sharePanel');
+  const spUrl    = document.getElementById('spUrl');
+  const spCopy   = document.getElementById('spCopy');
+  const spCount  = document.getElementById('spCount');
   const formLoadedAt = Date.now();
-  const MIN_FILL_MS = 2500;
+  const EMAIL_RE = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/;
+  const myRef = () => store.get('six33_my_ref');
+
+  if (invite && store.get('six33_inbound_ref') && !myRef()) invite.classList.add('show');
 
   function wShowError(msg) {
     wErr.textContent = msg;
@@ -1547,14 +1841,79 @@
     wErr.textContent = '';
     wEmail.removeAttribute('aria-invalid');
   }
-  function wSucceed() {
-    wForm.style.display = 'none';
-    wClearError();
-    wSuccess.classList.add('show');
-    showToast("You're on the list — built to seek first");
+  function setBusy(on) {
+    wBtn.disabled = on;
+    wBtn.classList.toggle('loading', on);
   }
 
-  const EMAIL_RE = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/;
+  const shareUrl = (code) => 'https://www.six33fuel.com/?ref=' + encodeURIComponent(code);
+  const SHARE_TEXT = "I just joined the SIX33 Fuel Systems waitlist — four fuel systems with scripture on every packet, launching on Kickstarter. Join me:";
+
+  async function refreshCount(code) {
+    try {
+      const r = await fetch('/api/ref?stats=' + encodeURIComponent(code), { cache: 'no-store' });
+      const d = await r.json();
+      spCount.textContent = d && d.valid ? String(d.referred) : '–';
+    } catch (_) { spCount.textContent = '–'; }
+  }
+
+  function showSharePanel(code, opts) {
+    wForm.style.display = 'none';
+    wPrivacy.style.display = 'none';
+    if (invite) invite.classList.remove('show');
+    wSuccess.classList.add('show');
+    if (opts && opts.returning) wSuccess.textContent = "✓ You're already on the list. Here's your link again.";
+    if (!code) return; // bot-guard path: plain success, nothing to share
+    const url = shareUrl(code);
+    spUrl.value = url;
+    const enc = encodeURIComponent, msg = SHARE_TEXT + ' ' + url;
+    const set = (k, href) => { const a = panel.querySelector('[data-share="' + k + '"]'); if (a) a.href = href; };
+    set('whatsapp', 'https://wa.me/?text=' + enc(msg));
+    set('sms', 'sms:?&body=' + enc(msg));
+    set('email', 'mailto:?subject=' + enc('Join me on the SIX33 waitlist') + '&body=' + enc(msg));
+    set('x', 'https://x.com/intent/post?text=' + enc(SHARE_TEXT) + '&url=' + enc(url));
+    set('facebook', 'https://www.facebook.com/sharer/sharer.php?u=' + enc(url));
+    if (navigator.share) document.getElementById('spNative').hidden = false;
+    panel.classList.add('show');
+    refreshCount(code);
+  }
+
+  if (panel) {
+    spCopy.addEventListener('click', async () => {
+      let ok = false;
+      try { await navigator.clipboard.writeText(spUrl.value); ok = true; }
+      catch (_) { spUrl.select(); try { ok = document.execCommand('copy'); } catch (_) {} }
+      spCopy.textContent = ok ? 'Copied ✓' : 'Select & Copy';
+      spCopy.classList.toggle('done', ok);
+      if (ok) track('share', 'copy');
+      setTimeout(() => { spCopy.textContent = 'Copy Link'; spCopy.classList.remove('done'); }, 2200);
+    });
+    spUrl.addEventListener('focus', () => spUrl.select());
+    panel.querySelector('#spChannels').addEventListener('click', async (e) => {
+      const el = e.target.closest('[data-share]');
+      if (!el) return;
+      const ch = el.dataset.share;
+      track('share', ch);
+      if (ch === 'native') {
+        e.preventDefault();
+        try { await navigator.share({ title: 'SIX33 Fuel Systems', text: SHARE_TEXT, url: spUrl.value }); } catch (_) {}
+      }
+    });
+    document.getElementById('spReset').addEventListener('click', () => {
+      store.del('six33_my_ref');
+      panel.classList.remove('show');
+      wSuccess.classList.remove('show');
+      wSuccess.textContent = "✓ You're on the list. We'll see you at launch — Built To Seek First.";
+      wForm.reset();
+      wForm.style.display = '';
+      wPrivacy.style.display = '';
+      wBtn.disabled = false;
+      wEmail.focus();
+    });
+  }
+
+  // A returning member sees their link (and count) instead of an empty form.
+  if (myRef() && REF_RE.test(myRef())) showSharePanel(myRef(), { returning: true });
 
   if (wForm) {
     wEmail.addEventListener('input', wClearError);
@@ -1565,68 +1924,59 @@
 
       const email = (wEmail.value || '').trim().toLowerCase();
       const name  = (wName.value || '').trim();
-
-      if (!email)               return wShowError('Enter your email to join the waitlist.');
+      if (!email)                return wShowError('Enter your email to join the waitlist.');
       if (!EMAIL_RE.test(email)) return wShowError("That email doesn't look right — mind checking it?");
 
-      // Honeypot tripped, or submitted faster than a human can read the form.
-      // Show success so the bot moves on, but never write the row.
-      const elapsed = Date.now() - formLoadedAt;
-      if ((wTrap.value || '').trim() !== '' || elapsed < MIN_FILL_MS) {
-        wSucceed();
-        return;
-      }
-
-      wBtn.disabled = true;
-      wBtn.classList.add('loading');
-
-      const payload = {
-        email: email,
-        source: 'six33fuel.com',
-        metadata: {
-          page: 'coming-soon',
-          section: 'waitlist',
-          time_to_submit_ms: elapsed,
-          referrer: (document.referrer || '').slice(0, 300),
-          landing_path: location.pathname + location.search,
-          screen: window.innerWidth + 'x' + window.innerHeight,
-          tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || '')
-        }
-      };
-      if (name) payload.full_name = name;
-
+      setBusy(true);
       try {
-        const res = await fetch(SUPABASE_URL + '/rest/v1/' + WAITLIST_TABLE, {
+        const res = await fetch('/api/waitlist', {
           method: 'POST',
-          headers: {
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify(payload)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            name: name || null,
+            source: 'six33fuel.com',
+            elapsedMs: Date.now() - formLoadedAt,
+            trap: wTrap.value || null,
+            ref: store.get('six33_inbound_ref'),
+            meta: {
+              section: 'waitlist',
+              referrer: (document.referrer || '').slice(0, 300),
+              landing_path: location.pathname,
+              screen: window.innerWidth + 'x' + window.innerHeight,
+              tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
+              ...utm,
+            },
+          }),
         });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || 'HTTP ' + res.status);
 
-        // 409 = this email is already on the list. That is a success for the visitor.
-        if (res.ok || res.status === 409) {
-          wSucceed();
-          try {
-            localStorage.setItem('six33_waitlist_joined', '1');
-          } catch (_) {}
-        } else {
-          throw new Error('HTTP ' + res.status);
+        const creditedRef = store.get('six33_inbound_ref');
+        if (data.ref_code) {
+          store.set('six33_my_ref', data.ref_code);
+          store.del('six33_inbound_ref');
         }
+        track('signup', data.is_new === false ? 'returning' : 'new', creditedRef);
+        showSharePanel(data.ref_code, { returning: data.is_new === false });
+        showToast(data.is_new === false ? "Welcome back — you're already on the list" : "You're on the list — check your inbox");
+        wSuccess.focus({ preventScroll: true });
       } catch (err) {
-        wShowError('Something went wrong on our end. Try again, or email hello@thykingdom.net.');
-        wBtn.disabled = false;
-        wBtn.classList.remove('loading');
-        return;
+        const msg = err && err.message && !/^HTTP|Failed to fetch|NetworkError|Load failed/i.test(err.message)
+          ? err.message
+          : 'Something went wrong on our end. Try again, or email hello@thykingdom.net.';
+        wShowError(msg);
+      } finally {
+        setBusy(false);
       }
-
-      wBtn.disabled = false;
-      wBtn.classList.remove('loading');
     });
   }
+
+  // Every waitlist CTA reports which one was used.
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-waitlist]');
+    if (t) track('cta', t.dataset.cta || (t.textContent || '').trim().slice(0, 40));
+  });
 
   // Toast
   let toastTimer;
