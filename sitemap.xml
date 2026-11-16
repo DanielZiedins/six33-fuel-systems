@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.six33fuel.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <lastmod>2026-10-07</lastmod>
-  </url>
-  <url>
-    <loc>https://www.six33fuel.com/privacy</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <url><loc>https://www.six33fuel.com/</loc><lastmod>2026-11-16</lastmod><priority>1.0</priority></url>
+  <url><loc>https://www.six33fuel.com/journal</loc><lastmod>2026-11-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.six33fuel.com/journal/seek-first-matthew-6-33-ordinary-tuesday</loc><lastmod>2026-11-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.six33fuel.com/journal/why-we-put-scripture-on-every-packet</loc><lastmod>2026-11-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.six33fuel.com/journal/a-day-on-mission-rhythm-behind-the-four-systems</loc><lastmod>2026-11-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.six33fuel.com/journal/rest-is-not-weakness-psalm-4-8</loc><lastmod>2026-11-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.six33fuel.com/journal/why-six33-is-launching-on-kickstarter</loc><lastmod>2026-11-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.six33fuel.com/privacy</loc><lastmod>2026-10-07</lastmod><priority>0.2</priority></url>
 </urlset>

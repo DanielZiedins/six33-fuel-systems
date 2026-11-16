@@ -5,7 +5,7 @@ export const SITE = {
   email: "hello@thykingdom.net",
   // Bump ONLY when page content changes (not for styling/infra) — it feeds sitemap
   // <lastmod> and dateModified. Never use the build clock.
-  contentUpdated: "2026-11-14",
+  contentUpdated: "2026-11-16",
 };
 
 // The Organization and founder (Person) entities are NOT redefined here: the generator
