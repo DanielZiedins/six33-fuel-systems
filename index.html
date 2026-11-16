@@ -468,6 +468,39 @@
   .pc-art img { width:100%; height:100%; object-fit:cover; }
   @media (max-width:640px) { .pc-art { width:110px; } }
 
+  /* ── Find Your System quiz ── */
+  .quiz { padding:110px 0; }
+  .quiz-shell { display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center; border:1px solid var(--line); border-radius:12px; padding:56px; background:radial-gradient(ellipse 70% 90% at 100% 0%, rgba(255,94,31,0.10), transparent 60%), radial-gradient(ellipse 60% 80% at 0% 100%, rgba(139,108,246,0.10), transparent 60%), var(--black-2); }
+  .quiz-stage { min-height:360px; display:flex; flex-direction:column; justify-content:center; }
+  .quiz-progress { display:flex; gap:8px; margin-bottom:22px; }
+  .quiz-progress span { flex:1; height:3px; border-radius:2px; background:var(--line-2); transition:background 0.4s var(--ease); }
+  .quiz-progress span.on { background:var(--ignite); box-shadow:0 0 12px var(--ignite-glow); }
+  .quiz-q fieldset { border:0; }
+  .quiz-q legend { font-family:var(--display); font-weight:600; font-size:1.55rem; line-height:1.2; text-transform:uppercase; margin-bottom:20px; }
+  .quiz-opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .quiz-opt { text-align:left; padding:18px 18px; border:1px solid var(--line-2); border-radius:6px; background:rgba(255,255,255,0.02); color:var(--text); font-family:var(--body); font-size:0.95rem; line-height:1.45; transition:border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease); }
+  .quiz-opt:hover, .quiz-opt:focus-visible { border-color:var(--ignite); background:rgba(255,94,31,0.06); transform:translateY(-2px); }
+  .quiz-opt small { display:block; margin-top:4px; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-faint); }
+  .quiz-q.leaving { animation:quizOut 0.22s var(--ease) forwards; }
+  @keyframes quizOut { to { opacity:0; transform:translateX(-14px); } }
+  .quiz-q.entering { animation:quizIn 0.35s var(--ease); }
+  @keyframes quizIn { from { opacity:0; transform:translateX(14px); } }
+  .quiz-result { display:grid; grid-template-columns:150px 1fr; gap:28px; align-items:center; animation:rise 0.6s var(--ease); }
+  .quiz-result[hidden] { display:none; }
+  .qr-art { border-radius:8px; overflow:hidden; aspect-ratio:200/320; border:1px solid var(--line-2); box-shadow:0 24px 60px rgba(0,0,0,0.6), 0 0 50px -10px var(--qr, var(--ignite)); }
+  .qr-art img { width:100%; height:100%; object-fit:cover; }
+  .qr-kicker { font-family:var(--mono); font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--text-faint); }
+  .qr-name { font-family:var(--display); font-weight:700; font-size:3.2rem; line-height:1; text-transform:uppercase; color:var(--qr, var(--ignite)); margin-top:6px; }
+  .qr-tag { font-family:var(--mono); font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-dim); margin-top:8px; }
+  .qr-why { color:var(--text-dim); margin:16px 0 10px; line-height:1.7; }
+  .qr-verse { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; color:var(--gold); border-left:2px solid var(--qr, var(--ignite)); padding-left:12px; margin-bottom:22px; }
+  .qr-actions { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .qr-actions .btn-primary { padding:15px 22px; font-size:0.82rem; }
+  .qr-link { font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-dim); text-decoration:underline; text-underline-offset:4px; }
+  .qr-link:hover { color:var(--text); }
+  @media (max-width:1024px) { .quiz-shell { grid-template-columns:1fr; gap:32px; padding:40px; } }
+  @media (max-width:640px) { .quiz { padding:70px 0; } .quiz-shell { padding:26px 20px; } .quiz-opts { grid-template-columns:1fr; } .quiz-result { grid-template-columns:100px 1fr; gap:18px; } .qr-name { font-size:2.3rem; } }
+
   /* Accessibility helper */
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
@@ -1106,6 +1139,43 @@
         <div class="tl-time">21:00 &mdash; Wind Down</div>
         <div class="tl-name" style="color:var(--rest);">Rest</div>
         <div class="tl-body">Calm the nervous system. Enter true rest.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quiz" id="quiz" aria-labelledby="quizTitle">
+  <div class="wrap">
+    <div class="quiz-shell reveal">
+      <div class="quiz-intro">
+        <div class="eyebrow">60 Seconds &middot; Three Questions</div>
+        <h2 class="sec-title" id="quizTitle">Find Your<br/>System.</h2>
+        <p class="sec-lead">Every day has a turning point where you need the most help. Answer three questions and we'll show you which SIX33 system is built for yours.</p>
+      </div>
+      <div class="quiz-stage" id="quizStage">
+        <div class="quiz-progress" aria-hidden="true"><span></span><span></span><span></span></div>
+        <form class="quiz-q" id="quizForm" novalidate>
+          <fieldset>
+            <legend id="quizQ">Loading…</legend>
+            <div class="quiz-opts" id="quizOpts"></div>
+          </fieldset>
+        </form>
+        <div class="quiz-result" id="quizResult" role="status" aria-live="polite" hidden>
+          <div class="qr-art"><picture><source id="qrArtWebp" type="image/webp" /><img id="qrArt" width="200" height="320" alt="" /></picture></div>
+          <div class="qr-body">
+            <div class="qr-kicker">Your system</div>
+            <div class="qr-name" id="qrName"></div>
+            <div class="qr-tag" id="qrTag"></div>
+            <p class="qr-why" id="qrWhy"></p>
+            <p class="qr-verse" id="qrVerse"></p>
+            <div class="qr-actions">
+              <button type="button" class="btn-primary" id="qrJoin">Get First Word On <span id="qrJoinName"></span></button>
+              <button type="button" class="qr-link" id="qrShare">Share my result</button>
+              <button type="button" class="qr-link" id="qrAgain">Start over</button>
+            </div>
+          </div>
+        </div>
+        <noscript><p class="sec-lead">The quiz needs JavaScript. In short: <b>Ignite</b> for mornings, <b>Flow</b> for deep work, <b>Recover</b> for after effort, <b>Rest</b> for winding down.</p></noscript>
       </div>
     </div>
   </div>
@@ -1892,6 +1962,115 @@
   const utm = {};
   ['utm_source', 'utm_medium', 'utm_campaign', 'src'].forEach(k => { if (params.get(k)) utm[k] = params.get(k).slice(0, 80); });
 
+  // ── Find Your System quiz ───────────────────────────────────────────
+  // Three questions, each answer votes for one system. Fit is described as the
+  // moment of the day it serves — never as a health outcome.
+  const SYSTEMS = {
+    ignite:  { name: 'Ignite',  color: 'var(--ignite)',  tag: 'Energy + Focus',
+               why: 'Your battle is the start: getting moving, getting sharp, and getting into the day before it gets into you. Ignite is built for that first push.',
+               verse: '"Never be lacking in zeal, but keep your spiritual fervor, serving the Lord." — Romans 12:11' },
+    flow:    { name: 'Flow',    color: 'var(--flow)',    tag: 'Productivity + Deep Work',
+               why: 'Your best work happens in long, focused stretches — building, studying, creating. Flow is built for the hours that need all of you.',
+               verse: '"Whatever you do, work at it with all your heart, as working for the Lord." — Colossians 3:23' },
+    recover: { name: 'Recover', color: 'var(--recover)', tag: 'Recovery + Electrolytes',
+               why: 'You pour a lot out — training, physical work, long days on your feet. Recover is built for after the effort, so you can go again tomorrow.',
+               verse: '"He restores my soul." — Psalm 23:3' },
+    rest:    { name: 'Rest',    color: 'var(--rest)',    tag: 'Sleep + Nervous System',
+               why: "You carry people, and switching off is the hard part. Rest is built for the end of the day — the part that makes tomorrow's zeal possible.",
+               verse: '"In peace I will lie down and sleep, for you alone, LORD, make me dwell in safety." — Psalm 4:8' },
+  };
+  const QUESTIONS = [
+    { q: 'When do you need the most help?', opts: [
+      ['ignite', 'Getting going in the morning', 'Rise'], ['flow', 'Staying locked in for hours', 'Deep work'],
+      ['recover', 'Bouncing back after effort', 'After effort'], ['rest', 'Switching off at night', 'Wind down'] ] },
+    { q: 'What fills most of your week?', opts: [
+      ['ignite', 'Training, competing, early starts', 'Athlete'], ['flow', 'Building, studying, creating', 'Builder'],
+      ['recover', 'Long, physical days on my feet', 'Worker'], ['rest', 'Carrying a team or a family', 'Leader'] ] },
+    { q: 'Which verse do you need right now?', opts: [
+      ['ignite', '"Never be lacking in zeal…"', 'Romans 12:11'], ['flow', '"Whatever you do, work at it with all your heart…"', 'Colossians 3:23'],
+      ['recover', '"He restores my soul."', 'Psalm 23:3'], ['rest', '"In peace I will lie down and sleep…"', 'Psalm 4:8'] ] },
+  ];
+  const quizForm = document.getElementById('quizForm');
+  if (quizForm) {
+    const qLegend = document.getElementById('quizQ');
+    const qOpts = document.getElementById('quizOpts');
+    const qResult = document.getElementById('quizResult');
+    const qBars = document.querySelectorAll('.quiz-progress span');
+    let step = 0, votes = [];
+
+    function renderStep() {
+      const Q = QUESTIONS[step];
+      qBars.forEach((b, i) => b.classList.toggle('on', i <= step));
+      qLegend.textContent = Q.q;
+      qOpts.innerHTML = '';
+      Q.opts.forEach(([sys, label, hint]) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'quiz-opt'; b.dataset.sys = sys;
+        b.innerHTML = '<span></span><small></small>';
+        b.firstChild.textContent = label; b.lastChild.textContent = hint;
+        qOpts.appendChild(b);
+      });
+    }
+    function pick(votesArr) {
+      const tally = {};
+      votesArr.forEach((s) => { tally[s] = (tally[s] || 0) + 1; });
+      // Most votes wins; a tie goes to the first question (the time of day that's hardest).
+      return Object.keys(tally).sort((a, b) => tally[b] - tally[a] || votesArr.indexOf(a) - votesArr.indexOf(b))[0];
+    }
+    function showResult(sys, fromStore) {
+      const S = SYSTEMS[sys];
+      quizForm.hidden = true;
+      qBars.forEach((b) => b.classList.add('on'));
+      qResult.style.setProperty('--qr', S.color);
+      document.getElementById('qrArtWebp').srcset = 'packet-' + sys + '.webp';
+      const img = document.getElementById('qrArt'); img.src = 'packet-' + sys + '.jpg'; img.alt = 'SIX33 ' + S.name + ' stick pack';
+      document.getElementById('qrName').textContent = S.name;
+      document.getElementById('qrTag').textContent = S.tag;
+      document.getElementById('qrWhy').textContent = S.why;
+      document.getElementById('qrVerse').textContent = S.verse;
+      document.getElementById('qrJoinName').textContent = S.name;
+      qResult.hidden = false;
+      if (!fromStore) track('quiz', 'result:' + sys);
+    }
+    qOpts.addEventListener('click', (e) => {
+      const b = e.target.closest('.quiz-opt');
+      if (!b) return;
+      if (step === 0 && !votes.length) track('quiz', 'start');
+      votes.push(b.dataset.sys);
+      if (step < QUESTIONS.length - 1) {
+        step++;
+        quizForm.classList.add('leaving');
+        setTimeout(() => {
+          quizForm.classList.remove('leaving');
+          renderStep();
+          quizForm.classList.add('entering');
+          setTimeout(() => quizForm.classList.remove('entering'), 360);
+          const first = qOpts.querySelector('.quiz-opt'); if (first) first.focus({ preventScroll: true });
+        }, REDUCE_MOTION ? 0 : 220);
+      } else {
+        const sys = pick(votes);
+        store.set('six33_system', sys);
+        showResult(sys, false);
+      }
+    });
+    document.getElementById('qrAgain').addEventListener('click', () => {
+      step = 0; votes = []; store.del('six33_system');
+      qResult.hidden = true; quizForm.hidden = false; renderStep();
+      const first = qOpts.querySelector('.quiz-opt'); if (first) first.focus();
+    });
+    document.getElementById('qrJoin').addEventListener('click', () => { track('cta', 'quiz-join'); goToWaitlist(); });
+    document.getElementById('qrShare').addEventListener('click', async () => {
+      const sys = store.get('six33_system'); const S = SYSTEMS[sys]; if (!S) return;
+      const url = 'https://www.six33fuel.com/' + (myRef() ? '?ref=' + myRef() : '') + '#quiz';
+      const text = 'My SIX33 system is ' + S.name + ' (' + S.tag + '). Find yours:';
+      track('share', 'quiz');
+      if (navigator.share) { try { await navigator.share({ title: 'SIX33 Fuel Systems', text, url }); return; } catch (_) { return; } }
+      try { await navigator.clipboard.writeText(text + ' ' + url); showToast('Result copied — paste it anywhere'); } catch (_) {}
+    });
+    const saved = store.get('six33_system');
+    if (saved && SYSTEMS[saved]) showResult(saved, true); else renderStep();
+  }
+
   // ── Waitlist → /api/waitlist (six33-fuel-email edge function) ───────
   // The server owns validation, the bot guard and the flood cap; the client
   // checks only enough to give fast, friendly feedback.
@@ -2028,6 +2207,7 @@
               landing_path: location.pathname,
               screen: window.innerWidth + 'x' + window.innerHeight,
               tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''),
+              ...(store.get('six33_system') ? { system_interest: store.get('six33_system') } : {}),
               ...utm,
             },
           }),
