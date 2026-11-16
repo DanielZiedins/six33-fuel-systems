@@ -651,9 +651,9 @@
     .founder-wrap { grid-template-columns:1fr; gap:50px; }
     .founder-photo { max-width:460px; margin:0 auto; }
   }
-  @media (max-width:640px) {
-    .wrap { padding:0 18px; }
-    nav { padding:13px 18px; }
+  /* Seven nav links stop fitting below ~1060px: switch to the drop-down menu there. */
+  @media (max-width:1060px) {
+    .nav-cta { margin-left:auto; margin-right:12px; }
     .burger { display:flex; }
     .nav-cta { padding:9px 14px; font-size:0.7rem; }
 
@@ -681,6 +681,11 @@
     nav.menu-open .burger span:nth-child(2) { opacity:0; }
     nav.menu-open .burger span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
     body.menu-locked { overflow:hidden; }
+  }
+  @media (max-width:640px) {
+    .wrap { padding:0 18px; }
+    nav { padding:13px 18px; }
+
     section { padding:80px 0; }
     .product-grid { grid-template-columns:1fr; }
     .timeline { grid-template-columns:repeat(2,1fr); }
@@ -1724,7 +1729,7 @@
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
     // Never leave the panel stuck open when resizing up to desktop
-    window.addEventListener('resize', () => { if (window.innerWidth > 640) setMenu(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1060) setMenu(false); });
   }
 
   // Reveal-on-scroll.
